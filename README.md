@@ -117,6 +117,24 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
 - dev： 开发环境 YII_ENV_DEV  为true
 - test：测试环境 YII_ENV_TEST 为true
 
+# 控制器
+- 默认控制器：yii\base\Application::defaultRoute属性指定的默认控制器
+
+`
+
+    应用配置中修改这个就行
+    [
+        'defaultRoute' => 'main',
+    ]
+    'defaultRoute' => 'test/index1',//如果后面跟着方法，就不会走默认控制器里面的方法
+    
+    尽可能修改main-local.php的内容
+    
+    默认的操作方法在\yii\base\Controller：public $defaultAction = 'index';
+    在当前控制器里面重写这个属性配置就行
+`
+- 控制器动作【方法】
+
 
 
 
