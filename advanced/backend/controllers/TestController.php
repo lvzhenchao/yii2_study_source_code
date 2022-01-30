@@ -9,7 +9,7 @@ class TestController extends \yii\web\Controller
 
     public $title = "标题";
 
-    public $layout = 'common';
+//    public $layout = 'common';
 //    public $layout = '@backend/template/layouts/common';
 
 
