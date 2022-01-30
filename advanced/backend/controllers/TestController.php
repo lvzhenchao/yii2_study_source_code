@@ -5,9 +5,15 @@ namespace backend\controllers;
 class TestController extends \yii\web\Controller
 {
     //默认的操作方法在\yii\base\Controller：public $defaultAction = 'index';
-    public $defaultAction = 'index2';
+    public $defaultAction = 'index5';
 
-    //http://yii2_study.com/backend/web/index.php?r=test/sms
+    public $title = "标题";
+
+    public $layout = 'common';
+//    public $layout = '@backend/template/layouts/common';
+
+
+    //独立方法
     public function actions()
     {
         //控制器中覆盖yii\base\Controller::actions()方法
@@ -49,6 +55,7 @@ class TestController extends \yii\web\Controller
 
     public function actionIndex5()
     {
+//        echo \Yii::$app->viewPath;die;
         return $this->render('index5');
     }
 
