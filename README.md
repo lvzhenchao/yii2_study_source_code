@@ -134,6 +134,31 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
     在当前控制器里面重写这个属性配置就行
 `
 - 控制器动作【方法】
+## 动作分类
+- 内联动作：类似这样的actionIndex
+
+- 独立动作：通过继承yii\base\Action或它的子类来定义;需要通过控制器中覆盖yii\base\Controller::actions()方法在action map中申明
+
+`
+
+    独立动作访问优先级高于内联动作
+
+    public function actions()
+    {
+        两种写法
+        return [
+            // 用类来申明"error" 操作
+            'error' => 'yii\web\ErrorAction',
+    
+            // 用配置数组申明 "view" 操作
+            'view' => [
+                'class' => 'yii\web\ViewAction',
+                'viewPrefix' => '',
+            ],
+        ];
+    }
+
+`
 
 
 
