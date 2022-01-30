@@ -83,6 +83,40 @@
     ];
 `
 
+# 配置及环境
+`
+
+    配置项的形式：数组形式
+    [
+        'class' => 'ClassName', //指定了将要创建的对象的完全限定类名
+        'propertyName' => 'peopertyValue', //对象属性的初始值，键值对
+        'on eventName' => $eventHandler, //附加到对象事件上的句柄
+        'as behaviorName' => $behaviorConfig, //附加到对象的行为
+    ]
+    
+
+`
+## 配置
+- 应用主体配置
+`
+main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Application 里面；包括组件
+四个配置项，优先级别，由低到高, 下面的覆盖前面的
+    main.php读取配置项
+    $params = array_merge(
+        require __DIR__ . '/../../common/config/params.php',
+        require __DIR__ . '/../../common/config/params-local.php',
+        require __DIR__ . '/params.php',
+        require __DIR__ . '/params-local.php'
+    );
+`
+
+- 组件配置
+
+## 环境
+- prod：生产环境 YII_ENV_PROD 为true
+- dev： 开发环境 YII_ENV_DEV  为true
+- test：测试环境 YII_ENV_TEST 为true
+
 
 
 
