@@ -74,6 +74,15 @@
 - 发送响应到终端用户
 - 入口脚本接收应用主体传来的退出状态并完成请求的处理
 
+# gii配置['class' => 'yii\gii\Module']
+- 添加允许访问的IP
+`
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+        'allowedIPs' => ['127.0.0.1', '::1', '*.*.*.*'],
+    ];
+`
+
 
 
 
