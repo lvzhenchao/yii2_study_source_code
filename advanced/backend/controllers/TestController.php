@@ -47,4 +47,9 @@ class TestController extends \yii\web\Controller
         echo "内联动作发短信给："+$telphone;
     }
 
+    public function actionIndex5()
+    {
+        return $this->render('index5');
+    }
+
 }

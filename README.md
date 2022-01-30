@@ -159,7 +159,25 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
     }
 
 `
+# 视图
+- 渲染：控制器渲染、视图渲染等；render()、renderPartial()常用；页面视图中的this->render和控制器this->render的this意义不一样
+- 强制定义视图渲染目录及文件：'viewPath'=> '@backend/template',
+- 获取数据：推送和拉取
 
+`
+
+    推送数据
+    echo $this->render('report', [
+        'foo' => 1,
+        'bar' => 2,
+    ]);
+    
+    拉取：前提是控制器需自己预先先定义好
+    <?= $this->context->id ?>
+    <?= $this->context->title ?>
+    <?= $this->context->title ?>
+
+`
 
 
 
