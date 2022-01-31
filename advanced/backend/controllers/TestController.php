@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\User;
+use backend\models\YzmOrder;
 
 class TestController extends \yii\web\Controller
 {
@@ -94,6 +95,20 @@ class TestController extends \yii\web\Controller
         $scenarios = $user->scenarios();
         print_r($scenarios);
 
+    }
+
+    public function actionIndex11()
+    {
+        $order = new YzmOrder();
+//        $order->ordernum = time().rand(10,99);
+//        $order->addtime = time();
+//        $order->paytime = time()+100;
+//        $order->userid = 1;
+//        $order->money = 10.21;
+//        prd($order->save());
+
+        $red = $order::findOne(1);
+        prd($red);
     }
 
 }
