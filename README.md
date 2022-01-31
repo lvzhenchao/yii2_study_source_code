@@ -179,6 +179,35 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
 
 `
 
+# 视图-主题
+- 主题的视图优先级高于本身的主题映射
+
+`
+'components' => [
+        'view' => [
+            'theme' => [
+                'basePath' => '@backend/template/duanwu',//主题资源css、js、images
+                'baseUrl' => '@backend/template/duanwu',
+                'pathMap' => [//映射基准替换规则，必须配置
+                    '@backend/template' => '@backend/template/duanwu',
+                ],
+            ],
+        ],
+    ],
+`
+- 主题继承
+
+`
+
+    第一个将被优先使用
+    越往上优先级越高，没有才会找下面的
+    '@backend/template' => [
+        '@backend/template/chunjie',
+        '@backend/template/duanwu',
+    ],
+
+`
+
 
 
 

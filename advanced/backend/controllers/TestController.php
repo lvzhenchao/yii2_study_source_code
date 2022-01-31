@@ -5,7 +5,7 @@ namespace backend\controllers;
 class TestController extends \yii\web\Controller
 {
     //默认的操作方法在\yii\base\Controller：public $defaultAction = 'index';
-    public $defaultAction = 'index5';
+//    public $defaultAction = 'index5';
 
     public $title = "标题";
 
@@ -57,6 +57,18 @@ class TestController extends \yii\web\Controller
     {
 //        echo \Yii::$app->viewPath;die;
         return $this->render('index5');
+    }
+
+    public function actionIndex7()
+    {
+//        echo "<pre>";
+//        print_r($this->view->theme->basePath);
+        return $this->render('index7');
+    }
+
+    public function actionIndex8()
+    {
+        return $this->render('index8');
     }
 
 }
