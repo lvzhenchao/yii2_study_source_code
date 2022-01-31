@@ -70,5 +70,11 @@ class TestController extends \yii\web\Controller
     {
         return $this->render('index8');
     }
+    public function actionIndex9()
+    {
+//        die(\Yii::getAlias('@web'));
+//        die(\Yii::getAlias('@webroot'));
+        return $this->render('index9');
+    }
 
 }

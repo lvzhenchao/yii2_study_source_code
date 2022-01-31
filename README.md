@@ -207,6 +207,20 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
     ],
 
 `
+- 静态资源的管理
+
+`
+
+    例如，只想IE9或更高的浏览器包含一个CSS文件，可以使用如下选项：
+    public $cssOptions = ['condition' => 'lte IE9'];
+    <!--[if lte IE9]>
+    <link rel="stylesheet" href="path/to/foo.css">
+    <![endif]-->
+    
+    使JavaScript文件包含在页面head区域（JavaScript文件默认包含在body的结束处）使用以下选项：
+    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
+
+`
 
 
 
