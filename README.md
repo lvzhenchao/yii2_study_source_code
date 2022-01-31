@@ -222,6 +222,11 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
 
 `
 
+# 模型
+- 属性
+- 属性标签：通过getAttributeLabel()方法获取标签；或者重写public function attributeLabels()这个方法，自定义标签名
+- 验证规则和场景写法
+
 
 
 
