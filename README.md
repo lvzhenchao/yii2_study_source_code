@@ -227,6 +227,20 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
 - 属性标签：通过getAttributeLabel()方法获取标签；或者重写public function attributeLabels()这个方法，自定义标签名
 - 验证规则和场景写法
 
+`
+
+    //临时验证：需要对某些没有绑定任何模型类的值进行 临时验证
+    $email = 'test@example.com';
+    $validator = new yii\validators\EmailValidator();
+    
+    if ($validator->validate($email, $error)) {
+        echo '有效的 Email 地址。';
+    } else {
+        echo $error;
+    }
+
+`
+
 
 
 
