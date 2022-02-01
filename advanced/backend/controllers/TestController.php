@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\User;
 use backend\models\YzmOrder;
+use Yii;
 
 class TestController extends \yii\web\Controller
 {
@@ -109,6 +110,12 @@ class TestController extends \yii\web\Controller
 
         $red = $order::findOne(1);
         prd($red);
+    }
+
+
+    public function actionIndex14()
+    {
+        echo Yii::t('app', 'lzc');
     }
 
 }

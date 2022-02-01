@@ -240,6 +240,27 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
     }
 
 `
+# 翻译
+
+`
+    第一个参数指储存消息来源的类别名称，第二个参数指需要被翻译的消息
+    \Yii::t('app', 'lzc');
+    'i18n' => [
+        'translations' => [
+            //类别名称  //是yii::t里面的第一个参数名
+            'app*' => [
+                'class' => 'yii\i18n\PhpMessageSource',
+                //翻译文件的存放位置
+                'basePath' => '@backend/messages',
+                //'sourceLanguage' => 'en-US',
+                'fileMap' => [
+                    'app' => 'app.php',
+                    'app/error' => 'error.php',
+                ],
+            ],
+        ],
+    ],
+`
 
 
 
