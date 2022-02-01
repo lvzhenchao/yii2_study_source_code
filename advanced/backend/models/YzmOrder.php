@@ -44,7 +44,7 @@ class YzmOrder extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'ordernum' => 'Ordernum',
+            'ordernum' => 'Ordernum',//订单号
             'addtime' => 'Addtime',
             'paytime' => 'Paytime',
             'userid' => 'Userid',
