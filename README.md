@@ -261,6 +261,9 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
         ],
     ],
 `
+# 新建模块示例gii
+- backend\modules\shop\Module
+- shop
 
 
 

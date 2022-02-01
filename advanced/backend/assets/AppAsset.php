@@ -14,13 +14,13 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
-        'css/index.css',
+//        'css/index.css',
     ];
     public $cssOptions = [
 
     ];
     public $js = [
-        'js/index.js'
+//        'js/index.js'
     ];
     public $jsOptions = [
         'position' => View::POS_HEAD
