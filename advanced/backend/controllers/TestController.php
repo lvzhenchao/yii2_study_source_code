@@ -5,6 +5,7 @@ namespace backend\controllers;
 use backend\models\User;
 use backend\models\YzmOrder;
 use Yii;
+use yii\helpers\Url;
 
 class TestController extends \yii\web\Controller
 {
@@ -135,6 +136,11 @@ class TestController extends \yii\web\Controller
             'status' => 'ok',
 
         ];
+    }
+
+    public function actionIndex17()
+    {
+        echo Url::to(['index17'], true);
     }
 
 }

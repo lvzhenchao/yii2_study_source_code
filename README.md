@@ -265,6 +265,38 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
 - backend\modules\shop\Module
 - shop
 
+# 路由
+- 美化URL
+
+`
+
+    nignx添加：
+    location / {
+        # Redirect everything that isnt a real file to index.php
+        try_files $uri $uri/ /index.php?$args;
+        
+        或者下面的
+        if (!-e $request_filename) {
+            rewrite ^/backend/web/(.*) /backend/web/index.php last
+        }
+    }
+    
+    组件：
+    'urlManager' => [
+        'enablePrettyUrl' => true,
+        'enableStrictParsing' => false,
+        'showScriptName' => false,
+        'rules' => [
+            "<controller:\w+>/<action:\w+>/<id:\d+>" => "<controller>/<action>",
+            "<controller:\w+>/<action:\w+>"          => "<controller>/<action>",
+            
+            单个这个也行
+            '/'=>'/',
+        ],
+    ],
+
+`
+
 
 
 
