@@ -266,6 +266,12 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
 - shop
 
 # 路由
+- 全拦截路由
+
+`
+    临时调整到维护模式，所有的请求下都会显示相同的信息页
+    'catchAll' => ['site/offline'],    
+`
 - 美化URL
 
 `
