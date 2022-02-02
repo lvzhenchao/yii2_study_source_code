@@ -118,4 +118,9 @@ class TestController extends \yii\web\Controller
         echo Yii::t('app', 'lzc');
     }
 
+    public function actionIndex15()
+    {
+        prd(Yii::$app->request);
+    }
+
 }
