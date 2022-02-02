@@ -123,4 +123,18 @@ class TestController extends \yii\web\Controller
         prd(Yii::$app->request);
     }
 
+    public function actionIndex16()
+    {
+//        throw new \yii\web\NotFoundHttpException;
+//        throw new \yii\web\ServerErrorHttpException;
+
+        $response = Yii::$app->response;
+        $response->format = \yii\web\Response::FORMAT_JSON;
+        return [
+            'msg' => '成功',
+            'status' => 'ok',
+
+        ];
+    }
+
 }
