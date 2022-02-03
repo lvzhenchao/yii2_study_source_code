@@ -109,8 +109,8 @@ class TestController extends \yii\web\Controller
 //        $order->money = 10.21;
 //        prd($order->save());
 
-        $red = $order::findOne(1);
-        prd($red);
+        $res = $order::findOne(1)->addtime;
+        dd($res);
     }
 
 
