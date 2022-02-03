@@ -143,4 +143,29 @@ class TestController extends \yii\web\Controller
         echo Url::to(['index17'], true);
     }
 
+    public function actionIndex21()
+    {
+//        prd(Yii::$app->session);
+//        dd(Yii::$app->session->isActive);
+//        dd(Yii::$app->session->getIsActive());
+
+        $session = Yii::$app->session;
+
+//        $session->setFlash('postDeleted', 'You have successfully deleted your post.');
+//
+//        echo $session->getFlash('postDeleted');
+//
+//        $result = $session->hasFlash('postDeleted');
+
+        $session->addFlash('alerts', 'You have successfully deleted your post.');
+        $session->addFlash('alerts', 'You have successfully added a new friend.');
+        $session->addFlash('alerts', 'You are promoted.');
+
+// 请求 #2
+// $alerts 为名为'alerts'的flash信息，为数组格式
+        $alerts = $session->getFlash('alerts');
+        dd($alerts);
+
+    }
+
 }

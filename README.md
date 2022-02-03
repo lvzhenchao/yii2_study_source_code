@@ -302,6 +302,29 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
     ],
 
 `
+# session
+- 自定义session
+`
+    //redis版
+    'session' => [
+        'class' => 'yii\redis\Session',
+        'name' => $session_name,   //配置一个唯一的ID，防止和别的系统的session互串
+        'keyPrefix'=>'user_session_',
+        'cookieParams' => [
+            'domain' => $domain,
+            'lifetime' => 0,
+            'httpOnly' => true,
+            'path' => '/',
+        ],
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => 'r-2zek58zgsnfticd8g4pd.redis.rds.aliyuncs.com',
+            'password' => 'Medcon8899',
+            'port' => 6379,
+            'database' => YII_ENV != 'prod' ? 16 : 1,
+        ],
+    ],
+`
 
 
 
