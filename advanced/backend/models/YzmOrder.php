@@ -53,7 +53,12 @@ class YzmOrder extends \yii\db\ActiveRecord
     }
 
     //数据格式转换；不好用
-    public function getAddtimeText()
+//    public function getAddtimeText()
+//    {
+//        return date('Y-m-d', $this->addtime);
+//    }
+    //数据格式转换；不好用
+    public function getAddtime()
     {
         return date('Y-m-d', $this->addtime);
     }
