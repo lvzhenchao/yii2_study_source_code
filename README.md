@@ -326,6 +326,25 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
     ],
 `
 
+# cookie
+- 发送cookie
+`
+    //发送 Cookies
+    $cookies = Yii::$app->response->cookies;
+    $cookies->add(new \yii\web\Cookie([
+        'name' => 'language',
+        'value' => 'zh-CN',
+        'expire' => time()+7*24*3600//7天免登录
+    ]));
+`
+- $request->cookies和$response->cookies的区别
+`
+前者是客户端的，后者是服务端的
+$request->cookies负责读取
+$response->cookies负责创建
+`
+
+
 
 
 

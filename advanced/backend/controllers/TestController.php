@@ -168,4 +168,16 @@ class TestController extends \yii\web\Controller
 
     }
 
+    public function actionIndex22()
+    {
+//        $cookies = Yii::$app->request->cookies;
+        
+        $cookies = Yii::$app->response->cookies;
+        $cookies->add(new \yii\web\Cookie([
+            'name' => 'language',
+            'value' => 'zh-CN',
+            'expire' => time()+7*24*3600
+        ]));
+    }
+
 }
