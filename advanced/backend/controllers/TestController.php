@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\events\Yzm;
 use backend\models\User;
 use backend\models\YzmOrder;
 use Yii;
@@ -149,7 +150,7 @@ class TestController extends \yii\web\Controller
         echo Url::to(['index17','id'=>100, 'username'=>'lzc'], true);
     }
 
-
+    //自定义组件
     public function actionIndex18()
     {
         //获取组件
@@ -169,6 +170,20 @@ class TestController extends \yii\web\Controller
     {
         $util = new \Util();
         prd($util);
+    }
+
+    const HELLO = 'hello';
+    public function actionIndex20()
+    {
+        $yzm = new Yzm();
+
+        //把处理器到事件上
+        $this->on(self::HELLO, [$yzm, 'event1'],['a'=>1]);
+        $this->off(self::HELLO, [$yzm, 'event1']);
+        $this->on(self::HELLO, ['\backend\events\Yzm', 'event2']);
+
+        //触发这个事件
+        $this->trigger(self::HELLO);
     }
 
     public function actionIndex21()
