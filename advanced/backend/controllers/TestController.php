@@ -164,6 +164,12 @@ class TestController extends \yii\web\Controller
         echo Yii::$app->sms->send('13800000000');
     }
 
+    public function actionIndex19()
+    {
+        $util = new \Util();
+        prd($util);
+    }
+
     public function actionIndex21()
     {
 //        prd(Yii::$app->session);

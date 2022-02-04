@@ -405,6 +405,15 @@ $response->cookies负责创建
     Yii::$app->sms->send('13800000000');
 
 `
+# 类自动加载
+- 类映射表（Class Map）
+
+`
+
+    //配置中添加
+    Yii::$classMap['Util'] = '@backend/third/Util.php';
+
+`
 
 
 
