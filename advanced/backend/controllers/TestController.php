@@ -113,6 +113,12 @@ class TestController extends \yii\web\Controller
         dd($res);
     }
 
+    public function actionIndex13()
+    {
+        $this->layout = false;
+        return $this->render('index13');
+    }
+
 
     public function actionIndex14()
     {
@@ -140,7 +146,22 @@ class TestController extends \yii\web\Controller
 
     public function actionIndex17()
     {
-        echo Url::to(['index17'], true);
+        echo Url::to(['index17','id'=>100, 'username'=>'lzc'], true);
+    }
+
+    public function actionIndex18()
+    {
+        //获取组件
+//        prd(Yii::$app->view);
+
+//        prd(Yii::$app->get('view'));
+
+//        prd(Yii::$app->getView());
+
+//        prd(Yii::$app->db);
+
+        //自定义组件
+        echo Yii::$app->sms->send('13800000000');
     }
 
     public function actionIndex21()
@@ -171,7 +192,7 @@ class TestController extends \yii\web\Controller
     public function actionIndex22()
     {
 //        $cookies = Yii::$app->request->cookies;
-        
+
         $cookies = Yii::$app->response->cookies;
         $cookies->add(new \yii\web\Cookie([
             'name' => 'language',

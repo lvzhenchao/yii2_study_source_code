@@ -343,6 +343,69 @@ main.php里面的配置属性基本都在 yii\web\Application 和 yii\base\Appli
 $request->cookies负责读取
 $response->cookies负责创建
 `
+# 组件：基本上都在yii\base\Application 里面定义了或者引用了
+- 常用的组件
+
+`
+
+    yii\web\AssetManager: 管理资源包和资源发布，详情请参考 管理资源 一节。
+    yii\db\Connection: 代表一个可以执行数据库操作的数据库连接， 注意配置该组件时必须指定组件类名和其他相关组件属性，如yii\db\Connection::dsn。 详情请参考 数据访问对象 一节。
+    yii\base\Application::errorHandler: 处理 PHP 错误和异常， 详情请参考 错误处理 一节。
+    yii\i18n\Formatter: 格式化输出显示给终端用户的数据，例如数字可能要带分隔符， 日期使用长格式。详情请参考 格式化输出数据一节。
+    yii\i18n\I18N: 支持信息翻译和格式化。详情请参考 国际化 一节。
+    yii\log\Dispatcher: 管理日志对象。详情请参考 日志 一节。
+    yii\swiftmailer\Mailer: 支持生成邮件结构并发送，详情请参考 邮件 一节。
+    yii\base\Application::response: 代表发送给用户的响应， 详情请参考 响应 一节。
+    yii\base\Application::request: 代表从终端用户处接收到的请求， 详情请参考 请求 一节。
+    yii\web\Session: 代表会话信息，仅在yii\web\Application 网页应用中可用， 详情请参考 Sessions (会话) and Cookies 一节。
+    yii\web\UrlManager: 支持URL地址解析和创建， 详情请参考 URL 解析和生成 一节。
+    yii\web\User: 代表认证登录用户信息，仅在yii\web\Application 网页应用中可用， 详情请参考 认证 一节。
+    yii\web\View: 支持渲染视图，详情请参考 Views 一节。
+    
+    //应用组件的方式
+    [
+        'components' => [
+            // 使用类名注册 "cache" 组件
+            'cache' => 'yii\caching\ApcCache',
+    
+            // 使用配置数组注册 "db" 组件
+            'db' => [
+                'class' => 'yii\db\Connection',
+                'dsn' => 'mysql:host=localhost;dbname=demo',
+                'username' => 'root',
+                'password' => '',
+            ],
+    
+            // 使用函数注册"search" 组件
+            'search' => function () {
+                return new app\components\SolrService;
+            },
+        ],
+    ]
+`
+- 更改错误处理组件
+
+`
+    'errorHandler' => [
+        'errorAction' => 'test/index17'
+    ],
+    访问不存在方法试一下
+`
+- 自定义组件
+`
+1、自定义一个组件：需继承yii\base\Component;
+2、main中引入组件
+    'components' => [
+        'sms' => [
+            'class' => 'backend\components\sms',
+        ],
+    ]
+3、调用
+    //sms是在组件中的key，也叫\Yii::$app->componentID
+    Yii::$app->sms->send('13800000000');
+
+`
+
 
 
 
