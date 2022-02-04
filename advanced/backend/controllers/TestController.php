@@ -34,7 +34,32 @@ class TestController extends \yii\web\Controller
                 'param2' => \Yii::$app->request->get('name'),
                 'param3' => '!!!',
               ],
+
+            //验证码
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => 'test',
+                //背景颜色
+                'backColor' => 0x000000,
+                //最大显示个数
+                'maxLength' => 5,
+                //最少显示个数
+                'minLength' => 4,
+                //间距
+                'padding' => 3,
+
+                //设置字符偏移量
+                'offset' => 10,
+                'testLimit' => 1,
+                'width' => 150,
+                'height' => 40,
+            ],
         ];
+    }
+
+    public function actionReg()
+    {
+        return $this->render('reg');
     }
 
     public function actionIndex()
@@ -184,6 +209,11 @@ class TestController extends \yii\web\Controller
 
         //触发这个事件
         $this->trigger(self::HELLO);
+    }
+
+    public function actionIndex23()
+    {
+        prd(Yii::$app->cache);
     }
 
     public function actionIndex21()
