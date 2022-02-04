@@ -149,6 +149,7 @@ class TestController extends \yii\web\Controller
         echo Url::to(['index17','id'=>100, 'username'=>'lzc'], true);
     }
 
+
     public function actionIndex18()
     {
         //获取组件
