@@ -1,6 +1,7 @@
 <?php
 namespace backend\modules\app\controllers;
 
+use yii\data\ActiveDataProvider;
 use yii\filters\ContentNegotiator;
 use yii\rest\ActiveController;
 use yii\web\Response;
@@ -19,19 +20,46 @@ class UserController extends ActiveController
         return $behaviors;
     }
 
+//    public function actions()
+//    {
+//        $actions =  parent::actions();
+//        unset($actions['index']);
+//        return $actions;
+//    }
+//
+//    public function actionIndex()
+//    {
+//        $modelClass = $this->modelClass;
+//        $data = $modelClass::find()->all();
+//
+//        return $data;
+//    }
+
     public function actions()
     {
         $actions =  parent::actions();
-        unset($actions['index']);
+        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     }
 
-    public function actionIndex()
+    public function prepareDataProvider()
     {
-        $modelClass = $this->modelClass;
-        $data = $modelClass::find()->all();
+        $params = \Yii::$app->request->queryParams;
 
-        return $data;
+        $modelClass = $this->modelClass;
+
+        $query = $modelClass::find();
+
+        foreach ($params as $k => $v) {
+            if ($k == 'id') {
+                $query->andWhere(['id' => $v]);
+            }
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+        return $dataProvider;
     }
 
 }

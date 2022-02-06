@@ -488,6 +488,11 @@ yii\rest\ActiveController
         ];
     }
 `
+# restful的查询方式
+- 查询特定字段：fields; http://yii2_study.com/app/user?fields=id,admin
+- 分页：page; http://yii2_study.com/app/user?fields=id,admin&page=1
+- 排序：sort;
+
 
 
 
