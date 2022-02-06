@@ -414,6 +414,30 @@ $response->cookies负责创建
     Yii::$classMap['Util'] = '@backend/third/Util.php';
 
 `
+# restful
+- 控制器继承yii\rest\ActiveController;
+- 配置url
+
+`
+
+    'urlManager' => [
+        'enablePrettyUrl' => true,
+        'enableStrictParsing' => false,
+        'showScriptName' => false,
+        'rules' => [
+
+            '/'=>'/',
+            //或
+           ['class' => 'yii\rest\UrlRule', 'controller' => 'app\admin'],
+        ],
+    ],
+`
+- 注意默认存在的独立方法
+
+`
+yii\rest\ActiveController
+    public function actions(){6个}
+`
 
 
 
