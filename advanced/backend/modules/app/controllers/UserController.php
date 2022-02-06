@@ -14,17 +14,11 @@ class UserController extends ActiveController
 
     public function behaviors()
     {
-        return [
-            'contentNegotiator' => [
-                'class' => ContentNegotiator::className(),
-                'formats' => [
-                    'application/json' => Response::FORMAT_JSON,
-//                    'application/xml' => Response::FORMAT_XML,
-                ],
-            ],
-
-        ];
+        $behaviors = parent::behaviors();
+        $behaviors['contentNegotiator']['formats'] = ['application/json' => Response::FORMAT_JSON];
+        return $behaviors;
     }
+
     public function actions()
     {
         $actions =  parent::actions();
