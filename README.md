@@ -432,11 +432,61 @@ $response->cookies负责创建
         ],
     ],
 `
-- 注意默认存在的独立方法
+- 注意默认存在的独立方法：可以去掉
+
+`
+
+    //1、rule里面取出
+    rules = [
+        'except' => ['index'],    
+    ];
+    
+    //2、默认的方法都在独立方法里面
+    public function actions()
+    {
+      $actions =  parent::actions(); 
+      unset($actions['index']);
+      return $actions;
+    }
+    
+    //3、或者重构那个方法
+
+`
+
 
 `
 yii\rest\ActiveController
     public function actions(){6个}
+`
+- yii的restful不能解析json格式的数据
+
+`
+
+    组件内添加：json解析器
+    'request' => [
+            'parsers' => [
+                'application/josn' => 'yii\web\JsonParser',
+            ]
+        ],
+
+`
+- 返回格式问题 response;修改行为类底层，响应类
+
+`
+
+    public function behaviors()
+    {
+        return [
+            'contentNegotiator' => [
+                'class' => ContentNegotiator::className(),
+                'formats' => [
+                    'application/json' => Response::FORMAT_JSON,
+//                    'application/xml' => Response::FORMAT_XML,
+                ],
+            ],
+
+        ];
+    }
 `
 
 
