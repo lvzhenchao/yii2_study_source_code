@@ -496,6 +496,31 @@ yii\rest\ActiveController
 - 分页：page; http://yii2_study.com/app/user?fields=id,admin&page=1
 - 排序：sort;
 
+# restful的认证方式
+`
+    user组件内
+    基本配置
+    enableSession = false 或者在模块内的Module.php内设置 Yii::$app->user->enableSession = false;
+    loginUrl = null 显示一个HTTP 403 错误而不是跳转到登录界
+`
+- HTTP Basic Auth[https://www.php.net/manual/zh/features.http-auth.php]
+
+`
+    
+    可以用 header() 函数来向客户端浏览器发送“Authentication Required”信息，
+    使其弹出一个用户名／密码输入窗口
+    
+    4个参数
+    only
+    except
+    auth
+    realm
+`
+- Query parameter
+- OAuth 2
+
+
+
 
 
 

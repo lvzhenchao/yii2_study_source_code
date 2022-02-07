@@ -1,7 +1,9 @@
 <?php
 namespace backend\modules\app\controllers;
 
+use common\models\User;
 use yii\data\ActiveDataProvider;
+use yii\filters\auth\HttpBasicAuth;
 use yii\filters\ContentNegotiator;
 use yii\rest\ActiveController;
 use yii\web\Response;
@@ -17,6 +19,16 @@ class UserController extends ActiveController
     {
         $behaviors = parent::behaviors();
         $behaviors['contentNegotiator']['formats'] = ['application/json' => Response::FORMAT_JSON];
+        $behaviors['authenticator'] = [
+            'class' => HttpBasicAuth::className(),
+//            'only' => ['say'],
+            'auth' => function($username, $password){
+                return User::find()->where(['admin'=>$username,'password'=>$password])->one();
+            },
+//            'only' => ['say'],
+//            'except' => ['say'],
+//            'realm' => '',//域
+        ];
         return $behaviors;
     }
 
@@ -38,7 +50,7 @@ class UserController extends ActiveController
     public function actions()
     {
         $actions =  parent::actions();
-        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
+        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider_1'];
         return $actions;
     }
 
@@ -60,6 +72,16 @@ class UserController extends ActiveController
             'query' => $query
         ]);
         return $dataProvider;
+    }
+
+    public function prepareDataProvider_1()
+    {
+        return \Yii::$app->user->identity;
+    }
+
+    public function actionSay()
+    {
+        return ["a" => "b"];
     }
 
 }
