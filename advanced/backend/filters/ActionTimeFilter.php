@@ -10,17 +10,14 @@ class ActionTimeFilter extends ActionFilter
 
     public function beforeAction($action)
     {
-//        pr($action);
         $this->_startTime = microtime(true);
         return parent::beforeAction($action);
     }
 
     public function afterAction($action, $result)
     {
-//        pr($action);
-//        pr($result);
         $time = microtime(true) - $this->_startTime;
-        prd("Action '{$action->uniqueId}' spent $time second.");
+        pr("当前脚本: '{$action->uniqueId}' 消耗时间大小为： $time second.");
         return parent::afterAction($action, $result);
     }
 

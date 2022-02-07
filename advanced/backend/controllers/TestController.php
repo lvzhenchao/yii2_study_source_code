@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\events\Yzm;
+use backend\filters\ActionMemoryFilter;
 use backend\filters\ActionTimeFilter;
 use backend\filters\LoggingFilter;
 use backend\models\User;
@@ -278,6 +279,11 @@ class TestController extends \yii\web\Controller
                 'only'   => ['index24'], // 仅对 index24 生效
 //                'except' => ['test-one'], // 排除 'test-one'
             ],
+            'actionMemory' => [
+                'class'  => ActionMemoryFilter::className(),
+                'only'   => ['index24'], // 仅对 index24 生效
+//                'except' => ['test-one'], // 排除 'test-one'
+            ],
             'anchorAuth' => [
                 'class'  => LoggingFilter::className(),
                 'only'   => ['test', 'test-one'], // 仅对 'test'、'test-one' 生效
@@ -307,9 +313,10 @@ class TestController extends \yii\web\Controller
      */
     public function actionIndex24()
     {
-        for ($i=1; $i<=50; $i++)
-        {
-            pr("数字为 " . $i . "<br>");
+        $j=1;
+        for($i=0;$i<=100000000;$i++){
+            $j++;
+
         }
     }
 
