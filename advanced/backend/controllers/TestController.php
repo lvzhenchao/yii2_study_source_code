@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use backend\events\Yzm;
+use backend\filters\ActionTimeFilter;
+use backend\filters\LoggingFilter;
 use backend\models\User;
 use backend\models\YzmOrder;
 use Yii;
@@ -20,6 +22,11 @@ class TestController extends \yii\web\Controller
 
 
     //独立方法
+    /**
+     * 自定义相关独立方法：sms
+     * @return array
+     *
+     */
     public function actions()
     {
         //控制器中覆盖yii\base\Controller::actions()方法
@@ -175,7 +182,10 @@ class TestController extends \yii\web\Controller
         echo Url::to(['index17','id'=>100, 'username'=>'lzc'], true);
     }
 
-    //自定义组件
+    /**
+     * 自定义组件
+     *
+     */
     public function actionIndex18()
     {
         //获取组件
@@ -198,6 +208,10 @@ class TestController extends \yii\web\Controller
     }
 
     const HELLO = 'hello';
+    /**
+     * 自定义事件
+     *
+     */
     public function actionIndex20()
     {
         $yzm = new Yzm();
@@ -251,6 +265,52 @@ class TestController extends \yii\web\Controller
             'value' => 'zh-CN',
             'expire' => time()+7*24*3600
         ]));
+    }
+
+
+    public function behaviors()
+    {
+        parent::behaviors();
+
+        return [
+            'actionTime' => [
+                'class'  => ActionTimeFilter::className(),
+                'only'   => ['index24'], // 仅对 index24 生效
+//                'except' => ['test-one'], // 排除 'test-one'
+            ],
+            'anchorAuth' => [
+                'class'  => LoggingFilter::className(),
+                'only'   => ['test', 'test-one'], // 仅对 'test'、'test-one' 生效
+                'except' => ['test-one'], // 排除 'test-one'
+            ],
+        ];
+    }
+
+    public function actionTestOne()
+    {
+        printf('This is a testing for %s.%s', $this->getRoute(), PHP_EOL);
+    }
+
+    public function actionTestTwo()
+    {
+        printf('This is a testing for %s.%s', $this->getRoute(), PHP_EOL);
+    }
+
+    public function actionTest()
+    {
+        printf('This is a testing for %s.%s', $this->getRoute(), PHP_EOL);
+    }
+
+    /**
+     * 自定义过滤器
+     *
+     */
+    public function actionIndex24()
+    {
+        for ($i=1; $i<=50; $i++)
+        {
+            pr("数字为 " . $i . "<br>");
+        }
     }
 
 }
