@@ -1,3 +1,6 @@
+# 参考网址
+- YII2，FECSHOP 教程[http://www.fancyecommerce.com/]
+
 # 目录结构
 - backend 传统后端应用目录
 - frontend 传统前端应用目录
