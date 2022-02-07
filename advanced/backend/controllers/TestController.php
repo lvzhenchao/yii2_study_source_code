@@ -302,12 +302,12 @@ class TestController extends \yii\web\Controller
     }
 
     /**
-     * 自定义过滤器
+     * 自定义过滤器应用
      *
      */
     public function actionIndex24()
     {
-        for ($i=1; $i<=50; $i++)
+        for ($i=1; $i<=5000; $i++)
         {
             pr("数字为 " . $i . "<br>");
         }
