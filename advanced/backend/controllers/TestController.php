@@ -307,7 +307,7 @@ class TestController extends \yii\web\Controller
      */
     public function actionIndex24()
     {
-        for ($i=1; $i<=5000; $i++)
+        for ($i=1; $i<=50; $i++)
         {
             pr("数字为 " . $i . "<br>");
         }
