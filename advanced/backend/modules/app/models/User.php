@@ -2,6 +2,7 @@
 
 namespace backend\modules\app\models;
 
+use common\models\Address;
 use Yii;
 
 /**
@@ -44,4 +45,37 @@ class User extends \yii\db\ActiveRecord
             'password' => 'Password',
         ];
     }
+
+    public function getAddress()
+    {
+        return $this->hasOne(Address::className(),['user_id' => 'id']);
+    }
+
+    //下面不是很推荐，因为fields里面存的是一些比较单纯的数据类型
+//    public function fields()
+//    {
+//        $fields = parent::fields();
+//
+//        $fields['addr'] = 'address';//没有这个字段，所以会去找getAddress()
+//
+//        return $fields;
+//    }
+
+
+    //http://yii2_study.com/app/user/10?fields=id,admin&expand=address
+    public function extraFields()
+    {
+        return [
+            //第一种直接写
+//            'address',
+
+            //第二种
+            'address' => function($model){
+                return $model->address;
+            }
+        ];
+    }
+
+
+
 }
