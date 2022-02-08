@@ -4,6 +4,7 @@ namespace backend\modules\app\controllers;
 use common\models\User;
 use yii\data\ActiveDataProvider;
 use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\QueryParamAuth;
 use yii\filters\ContentNegotiator;
 use yii\rest\ActiveController;
 use yii\web\Response;
@@ -20,14 +21,20 @@ class UserController extends ActiveController
         $behaviors = parent::behaviors();
         $behaviors['contentNegotiator']['formats'] = ['application/json' => Response::FORMAT_JSON];
         $behaviors['authenticator'] = [
-            'class' => HttpBasicAuth::className(),
-//            'only' => ['say'],
-            'auth' => function($username, $password){
-                return User::find()->where(['admin'=>$username,'password'=>$password])->one();
-            },
-//            'only' => ['say'],
+
+            //'only' => ['say'],
 //            'except' => ['say'],
 //            'realm' => '',//域
+            //第一种验证
+//            'class' => HttpBasicAuth::className(),
+//            'auth' => function($username, $password){
+//                return User::find()->where(['admin'=>$username,'password'=>$password])->one();
+//            },
+
+            //第二种验证
+            'class' => QueryParamAuth::className(),
+            'tokenParam' => 'ac',//更换url的参数名称
+
         ];
         return $behaviors;
     }
@@ -47,41 +54,46 @@ class UserController extends ActiveController
 //        return $data;
 //    }
 
-    public function actions()
-    {
-        $actions =  parent::actions();
-        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider_1'];
-        return $actions;
-    }
+    //测试http header登录验证 开始
+//    public function actions()
+//    {
+//        $actions =  parent::actions();
+//        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider_1'];
+//        return $actions;
+//    }
+//
+//    public function prepareDataProvider()
+//    {
+//        $params = \Yii::$app->request->queryParams;
+//
+//        $modelClass = $this->modelClass;
+//
+//        $query = $modelClass::find();
+//
+//        foreach ($params as $k => $v) {
+//            if ($k == 'id') {
+//                $query->andWhere(['id' => $v]);
+//            }
+//        }
+//
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => $query
+//        ]);
+//        return $dataProvider;
+//    }
+//
+//    public function prepareDataProvider_1()
+//    {
+//        return \Yii::$app->user->identity;
+//    }
+//
+//    public function actionSay()
+//    {
+//        return ["a" => "b"];
+//    }
 
-    public function prepareDataProvider()
-    {
-        $params = \Yii::$app->request->queryParams;
+    //测试http header登录验证 结束
 
-        $modelClass = $this->modelClass;
 
-        $query = $modelClass::find();
-
-        foreach ($params as $k => $v) {
-            if ($k == 'id') {
-                $query->andWhere(['id' => $v]);
-            }
-        }
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query
-        ]);
-        return $dataProvider;
-    }
-
-    public function prepareDataProvider_1()
-    {
-        return \Yii::$app->user->identity;
-    }
-
-    public function actionSay()
-    {
-        return ["a" => "b"];
-    }
 
 }

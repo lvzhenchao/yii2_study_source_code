@@ -12,6 +12,7 @@ use yii\web\IdentityInterface;
  * @property int $id
  * @property string $admin
  * @property string $password
+ * @property string $access_token
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -31,7 +32,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             [['admin', 'password'], 'required'],
             [['admin'], 'string', 'max' => 20],
-            [['password'], 'string', 'max' => 255],
+            [['password','access_token'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,6 +45,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'id' => 'ID',
             'admin' => 'Admin',
             'password' => 'Password',
+            'access_token' => 'AccessToken',
         ];
     }
 
