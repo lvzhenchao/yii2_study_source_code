@@ -7,6 +7,7 @@ use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\auth\QueryParamAuth;
 use yii\filters\ContentNegotiator;
+use yii\filters\RateLimiter;
 use yii\rest\ActiveController;
 use yii\web\Response;
 
@@ -39,6 +40,10 @@ class UserController extends ActiveController
             //第三种验证
             'class' => HttpBearerAuth::className(),
 
+        ];
+        $behaviors['ratelimiter'] = [
+            'class' => RateLimiter::classname(),
+            'enableRateLimitHeaders' => true,
         ];
         return $behaviors;
     }

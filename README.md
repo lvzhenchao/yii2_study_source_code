@@ -535,6 +535,41 @@ yii\rest\ActiveController
     2、Authorization：
 `
 
+# 速率限制
+- 在相应的时间内针对所有接口调用次数
+
+`
+    
+    1、用户继承接口RateLimitInterface
+        class User extends \yii\db\ActiveRecord implements IdentityInterface,RateLimitInterface
+        
+    2、实现接口的三个方法
+        // 返回在单位时间内允许的请求的最大数目，例如，[10, 60] 表示在60秒内最多请求10次。
+        public function getratelimit($request, $action)
+        {
+            return [$this->rateLimit, 60];
+        }
+    
+        // 返回剩余的允许的请求数。
+        public function loadallowance($request, $action)
+        {
+            return [$this->allowance, $this->allowance_updated_at];
+        }
+    
+        // 保存请求时的unix时间戳。
+        public function saveallowance($request, $action, $allowance, $timestamp)
+        {
+            $this->allowance = (int)$allowance;
+            $this->allowance_updated_at = (int)$timestamp;
+            $this->save();
+        }
+        
+    3、
+    
+`
+- 针对单个接口的速率限制
+
+
 
 
 
