@@ -517,6 +517,15 @@ yii\rest\ActiveController
     realm
 `
 - Query parameter
+
+`
+
+    1、记得修改组件user的identityClass
+    2、'class' => QueryParamAuth::className(),
+       'tokenParam' => 'ac',//更换url的参数名称
+
+`
+
 - OAuth 2
 
 
