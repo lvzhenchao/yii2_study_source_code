@@ -18,7 +18,9 @@ class ActionMemoryFilter extends ActionFilter
     {
         $memory = memory_get_usage() - $this->_startMemory;
         $memory = !empty($memory) ? $memory/1024/1024 : 0;
-        pr("当前脚本: '{$action->uniqueId}' 消耗内存大小为： $memory MB.");
+        Yii::$app->cache->set($action->uniqueId.'_memory', "当前脚本: '{$action->uniqueId}' 消耗内存大小为： $memory MB.");
+//        pr("当前脚本: '{$action->uniqueId}' 消耗内存大小为： $memory MB.");
+//        echo "<script>alert(\"当前脚本: '{$action->uniqueId}' 消耗内存大小为： $memory MB.\");</script>";
         return parent::afterAction($action, $result);
     }
 
