@@ -9,6 +9,7 @@ use backend\filters\LoggingFilter;
 use backend\models\User;
 use backend\models\YzmOrder;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 class TestController extends \yii\web\Controller
@@ -273,6 +274,21 @@ class TestController extends \yii\web\Controller
             'expire' => time()+7*24*3600
         ]));
     }
+
+//    public function behaviors()
+//    {
+//
+//        return ArrayHelper::merge([
+//            'actionTime' => [
+//                'class'  => ActionTimeFilter::className(),
+//                'only'   => ['settle-dues'],
+//            ],
+//            'actionMemory' => [
+//                'class'  => ActionMemoryFilter::className(),
+//                'only'   => ['settle-dues'],
+//            ],
+//        ], parent::behaviors());
+//    }
 
 
     public function behaviors()
