@@ -4,6 +4,7 @@ namespace backend\modules\app\controllers;
 use common\models\User;
 use yii\data\ActiveDataProvider;
 use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\HttpBearerAuth;
 use yii\filters\auth\QueryParamAuth;
 use yii\filters\ContentNegotiator;
 use yii\rest\ActiveController;
@@ -32,8 +33,11 @@ class UserController extends ActiveController
 //            },
 
             //第二种验证
-            'class' => QueryParamAuth::className(),
-            'tokenParam' => 'ac',//更换url的参数名称
+//            'class' => QueryParamAuth::className(),
+//            'tokenParam' => 'ac',//更换url的参数名称 http://yii2_study.com/app/user?ac=3166886
+
+            //第三种验证
+            'class' => HttpBearerAuth::className(),
 
         ];
         return $behaviors;

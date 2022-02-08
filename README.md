@@ -526,7 +526,14 @@ yii\rest\ActiveController
 
 `
 
-- OAuth 2
+- OAuth 2 【最常用】
+
+`
+    jsonp不支持header头里面带东西，可以用第二种
+    请求头携带token
+    1、'class' => HttpBearerAuth::className(),
+    2、Authorization：
+`
 
 
 
