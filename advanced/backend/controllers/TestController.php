@@ -43,6 +43,11 @@ class TestController extends \yii\web\Controller
                 'param3' => '!!!',
               ],
 
+            //添加自定义错误处理：'errorHandler' => ['errorAction' => 'test/error',],
+            'error' => [
+                'class' => 'backend\actions\ErrorAction',
+            ],
+
             //验证码
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
@@ -72,6 +77,7 @@ class TestController extends \yii\web\Controller
 
     public function actionIndex()
     {
+
         echo 111;
     }
 
