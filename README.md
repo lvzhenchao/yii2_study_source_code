@@ -542,6 +542,7 @@ yii\rest\ActiveController
     
     1、用户继承接口RateLimitInterface
         class User extends \yii\db\ActiveRecord implements IdentityInterface,RateLimitInterface
+        user表增加两个字段'allowance' ,'allowance_updated_at' ,
         
     2、实现接口的三个方法
         // 返回在单位时间内允许的请求的最大数目，例如，[10, 60] 表示在60秒内最多请求10次。
