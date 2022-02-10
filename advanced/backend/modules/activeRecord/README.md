@@ -11,3 +11,33 @@
 
 # AR是模型：AR最为数据库的管理工具
 - Model是代表业务数据，规则【rules(字段规则)】和逻辑【方法】的对象
+
+# AR连接数据库
+- 公共方法，组件获取数据库信息
+`
+    //DB组件
+    'components' => [
+            'db' => [
+                'class' => 'yii\db\Connection',
+                'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+                'username' => 'root',
+                'password' => '',
+                'charset' => 'utf8',
+            ],
+    ]
+    //公共底层方法
+    public static function getDb()
+    {
+        return Yii::$app->getDb();
+    }
+    public function getDb()
+    {
+        return $this->get('db');
+    }
+    //如果有多个数据库，可以对这个方法重写，从而读取相应的数据信息
+    public static function getDb()
+    {
+        return Yii::$app->db1;
+        return Yii::$app->db2;
+    } 
+`
