@@ -39,8 +39,8 @@ class Address extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'address' => 'Address',
+            'user_id' => '用户ID',
+            'address' => '地址',
         ];
     }
 }

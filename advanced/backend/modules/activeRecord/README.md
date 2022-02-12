@@ -51,4 +51,31 @@
 - one()查询也可以加上limit，针对可能不是一条结果的时候，框架不会加limit;查询结果只会显性的返回一条;
 - 组装原生sql时，
 
+# AR属性的意义
+- model的属性：业务数据
+- AR属性的含义：表中的所有列
+- 访问属性
+
+`
+    
+    //访问单个属性
+    $model->username;//建议
+    $model['username'];
+    //访问所有属性
+    $model->attributes;//获取属性 和 其值
+    $model->attributes();//获取的是属性的集合不包括值
+    //访问属性修改前但未保存提交【save】的数据;
+    //就是直接从数据读出的原始数据；
+    //如果是save完之后的，那就是新数据了
+    pr($model->attributes());
+    pr($model->attributes);
+    pr($model->getOldAttribute('admin'));
+
+`
+- 属性标签认识
+`
+    pr($model->attributeLabels());//获取所有属性的标签
+    pr($model->getAttributeLabel('address'));//获取某个属性的的标签
+    pr($model->generateAttributeLabel('address11'));//生成某个属性的标签
+`
 
