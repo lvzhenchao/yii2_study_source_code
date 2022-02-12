@@ -41,3 +41,14 @@
         return Yii::$app->db2;
     } 
 `
+# 模型名::find()&模型名::findBySql()的意义
+- 返回yii\db\ActiveQuery 实例，该类继承自yii\db\Query
+
+# yii\db\Query::batch() 和 yii\db\Query::each()
+- 返回一个实现了`Iterator` 接口 yii\db\BatchQueryResult 的对象
+
+# 查询需注意的地方
+- one()查询也可以加上limit，针对可能不是一条结果的时候，框架不会加limit;查询结果只会显性的返回一条;
+- 组装原生sql时，
+
+
