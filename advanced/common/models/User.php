@@ -215,4 +215,9 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(Address::className(),['user_id' => 'id']);
     }
+
+    public function getAddresss()
+    {
+        return $this->hasMany(Address::className(),['user_id' => 'id']);
+    }
 }

@@ -80,5 +80,20 @@ class ArController extends Controller
 
     }
 
+    public function actionJoin()
+    {
+        $data = User::find()
+            ->leftJoin('address',"user.id=address.user_id")
+            ->with('addresss')
+            ->asArray()->limit(3)->all();
+        prd($data);
+
+        $data1 = User::find()
+            ->joinWith('addresss')
+            ->asArray()->limit(3)->all();
+        prd($data1);
+
+    }
+
 
 }
