@@ -127,6 +127,10 @@ class ArController extends Controller
             prd($model->getErrors());
         }
         prd($model);
+
+        User::getDb()->transaction(function ($db){
+
+        });
     }
 
 

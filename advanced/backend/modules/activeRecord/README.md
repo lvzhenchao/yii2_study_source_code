@@ -213,3 +213,11 @@
 3、页面的提交的数据需要把版本号数据提交过来
    <input name="version" value="$model->version">
 `
+
+# Yii事务简洁写法
+`
+
+    User::getDb()->transaction(function ($db){
+        步骤
+    });
+`
