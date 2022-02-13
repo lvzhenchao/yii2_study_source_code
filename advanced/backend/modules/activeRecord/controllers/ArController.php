@@ -56,5 +56,29 @@ class ArController extends Controller
         prd($model->attributes);
     }
 
+    /**
+     * 延迟加载和即时加载
+     *
+     */
+    public function actionLoad()
+    {
+        //延迟加载
+//        $user = User::findOne(1);
+//        $a = $user->address;
+//        $b = $user->address;
+
+        //即时加载
+        $users = User::find()->with('address')->all();
+        foreach ($users as $user) {
+            $og = $user->address;
+        }
+        //SELECT * FROM `user`
+        //SELECT * FROM `address` WHERE `user_id` IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+
+        return $this->render('index');
+//        prd($a);
+
+    }
+
 
 }

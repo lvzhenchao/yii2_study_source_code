@@ -136,3 +136,27 @@
 - find()查找数据
 - save或update数据
 - 删除数据
+
+# 延迟加载和即时加载
+- 延迟加载：针对单条数据的关联查询
+`
+    public function getAddress()
+    {
+        return $this->hasOne(Address::className(),['user_id' => 'id']);
+    }
+    $user = User::findOne(1);
+    $a = $user->address;
+    $b = $user->address;
+    第一次关联查询时，会将信息存储起来。如果再次连接相同的关联对象，
+    不再执行任何查询语句，这种数据库查询的执行方法称为“延迟加载”
+`
+- 即时加载
+`
+    //即时加载
+    $users = User::find()->with('address')->all();
+    foreach ($users as $user) {
+        $og = $user->address;
+    }
+    //SELECT * FROM `user`
+    //SELECT * FROM `address` WHERE `user_id` IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+`
