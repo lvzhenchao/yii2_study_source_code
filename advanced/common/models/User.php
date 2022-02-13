@@ -218,6 +218,6 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getAddresss()
     {
-        return $this->hasMany(Address::className(),['user_id' => 'id']);
+        return $this->hasMany(Address::className(),['user_id' => 'id'])->inverseOf('user');//添加反向关联
     }
 }

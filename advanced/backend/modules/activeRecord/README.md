@@ -174,4 +174,21 @@
         ->joinWith('addresss')
         ->asArray()->limit(3)->all();
     prd($data1);
+    
+    反向关联
+    // SELECT * FROM customer WHERE id=1
+    $customer = Customer::findOne(1);
+    // 输出 "不相同"
+    // SELECT * FROM order WHERE customer_id=1
+    // SELECT * FROM customer WHERE id=1
+    if ($customer->orders[0]->customer === $customer) {
+        echo '相同';
+    } else {
+        echo '不相同';
+    }
+    
+    public function getOrders()
+    {
+        return $this->hasMany(Order::className(), ['customer_id' => 'id'])->inverseOf('customer');
+    }
 `
