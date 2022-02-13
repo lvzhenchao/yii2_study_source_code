@@ -100,3 +100,16 @@
 `
 - 块赋值：规则：在自己当前场景下、未设定场景下、或安全属性设定下
 
+# 保存数据
+- save如何做到insert和update两个操作的:
+
+`
+
+    if ($this->getIsNewRecord()) {
+        return $this->insert($runValidation, $attributeNames);
+    }
+    
+    return $this->update($runValidation, $attributeNames) !== false;
+`
+- save操作如何跳过数据验证:$model->save(false)
+- 块赋值：$model->attributes = [属性=>值]；$model->load($post, '')

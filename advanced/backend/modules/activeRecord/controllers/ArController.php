@@ -35,4 +35,11 @@ class ArController extends Controller
             prd($model->errors);
         }
     }
+
+    public function actionSave()
+    {
+        $model = new Address();
+        $model->attributes;
+        $model->save();
+    }
 }
