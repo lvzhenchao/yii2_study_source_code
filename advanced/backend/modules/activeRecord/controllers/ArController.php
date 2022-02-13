@@ -95,5 +95,19 @@ class ArController extends Controller
 
     }
 
+    public function actionVar()
+    {
+        $model = new User();
+        pr($model->engName);
+
+        echo "<hr/>";
+
+        $model->engName = 'lzc';
+        prd($model->engName);
+
+        
+
+    }
+
 
 }

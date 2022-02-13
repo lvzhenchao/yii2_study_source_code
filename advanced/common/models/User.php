@@ -220,4 +220,20 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(Address::className(),['user_id' => 'id'])->inverseOf('user');//添加反向关联
     }
+
+    private $_engName = null;
+
+    public function setEngName($name)
+    {
+        $this->_engName = $name;
+    }
+
+    public function getEngName()
+    {
+        if ($this->_engName == null) {
+            $this->_engName = 'china';
+        }
+
+        return $this->_engName;
+    }
 }
