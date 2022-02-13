@@ -131,3 +131,8 @@
     $model->loadDefaultValues();
     prd($model->attributes);
 `
+# AR的声明周期[https://www.kancloud.cn/manual/yii2-guide/69717]
+- 实例化对象
+- find()查找数据
+- save或update数据
+- 删除数据
