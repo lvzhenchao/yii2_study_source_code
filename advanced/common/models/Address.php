@@ -27,8 +27,10 @@ class Address extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id'], 'integer'],
+            [['user_id'], 'required', 'on' => 'login'],//登录场景下
+            [['user_id'], 'integer', ],//登录场景下
             [['address'], 'string', 'max' => 255],
+            [['address'], 'string', 'on'=>'reg'],
         ];
     }
 

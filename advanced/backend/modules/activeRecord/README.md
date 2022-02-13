@@ -78,4 +78,25 @@
     pr($model->getAttributeLabel('address'));//获取某个属性的的标签
     pr($model->generateAttributeLabel('address11'));//生成某个属性的标签
 `
+# AR模型里的rules是默认场景，所有的属性都需要验证
+- 查看场景：prd($model->scenarios());
+- 设定场景：$model->scenario = 'login';只会在当前场景下才会验证rules里的规则
+          
+`
+
+    $model = new Address();
+    $model->scenario = 'login';
+    
+    public function rules()
+    {
+        return [
+            [['user_id'], 'required', 'on' => 'login'],//登录场景下
+            [['user_id'], 'integer', ],//登录场景下
+            [['address'], 'string', 'max' => 255],
+            [['address'], 'string', 'on'=>'reg'],
+        ];
+    }
+
+`
+- 块赋值：规则：在自己当前场景下、未设定场景下、或安全属性设定下
 

@@ -23,4 +23,16 @@ class ArController extends Controller
         prd("----");
         return $this->render('index');
     }
+
+    public function actionAddress()
+    {
+        $model = new Address();
+        $model->scenario = 'login';
+//        prd($model->scenarios());
+        if ($model->validate()) {
+            prd('ok');
+        } else {
+            prd($model->errors);
+        }
+    }
 }
