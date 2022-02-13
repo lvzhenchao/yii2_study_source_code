@@ -192,3 +192,11 @@
         return $this->hasMany(Order::className(), ['customer_id' => 'id'])->inverseOf('customer');
     }
 `
+- 关联方法和属性的区别
+
+`
+    $user = User::findOne(1);
+    pr($user->address);      //common\models\Address Object 是个 AR对象
+    prd($user->getAddress();//yii\db\ActiveQuery Object
+    $user->getAddress()->where()->limit()->all()
+`

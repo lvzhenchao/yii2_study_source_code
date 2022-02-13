@@ -105,7 +105,15 @@ class ArController extends Controller
         $model->engName = 'lzc';
         prd($model->engName);
 
-        
+
+
+    }
+
+    public function actionRelation()
+    {
+        $user = User::findOne(1);
+        pr($user->address);      //common\models\Address Object 是个 AR对象
+        prd($user->getAddress());//yii\db\ActiveQuery Object
 
     }
 
