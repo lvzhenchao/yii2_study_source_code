@@ -4,6 +4,7 @@ namespace backend\modules\ActiveRecord\controllers;
 
 use common\models\Address;
 use common\models\User;
+use Yii;
 use yii\web\Controller;
 
 
@@ -115,6 +116,17 @@ class ArController extends Controller
         pr($user->address);      //common\models\Address Object 是个 AR对象
         prd($user->getAddress());//yii\db\ActiveQuery Object
 
+    }
+
+    public function actionLock()
+    {
+        $model = Address::findOne(1);
+
+        $model->load(Yii::$app->request->get());
+        if (!$model->save()) {
+            prd($model->getErrors());
+        }
+        prd($model);
     }
 
 
