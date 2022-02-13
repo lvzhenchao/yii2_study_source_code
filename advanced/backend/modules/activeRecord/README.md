@@ -113,3 +113,21 @@
 `
 - save操作如何跳过数据验证:$model->save(false)
 - 块赋值：$model->attributes = [属性=>值]；$model->load($post, '')
+
+# 脏属性和加载默认值
+- 脏属性获取：
+
+`
+    $model = Address::findOne(1);
+    $model->address = '上海';
+    $model->user_id = 13;
+    prd($model->getDirtyAttributes());
+`
+- 加载默认值：新建数据表字段设定的默认值
+
+`
+    //将数据库中表的设定默认值加载到相应的字段上
+    $model = new Address();
+    $model->loadDefaultValues();
+    prd($model->attributes);
+`

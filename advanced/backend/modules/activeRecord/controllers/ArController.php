@@ -42,4 +42,19 @@ class ArController extends Controller
         $model->attributes;
         $model->save();
     }
+
+    public function actionDirty()
+    {
+        $model = Address::findOne(1);
+        $model->address = '上海';
+        $model->user_id = 13;
+        pr($model->getDirtyAttributes());
+
+        //将数据库中表的设定默认值加载到相应的字段上
+        $model = new Address();
+        $model->loadDefaultValues();
+        prd($model->attributes);
+    }
+
+
 }
