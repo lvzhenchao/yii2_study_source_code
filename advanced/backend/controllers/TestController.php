@@ -8,6 +8,7 @@ use backend\filters\ActionTimeFilter;
 use backend\filters\LoggingFilter;
 use backend\models\User;
 use backend\models\YzmOrder;
+use backend\service\AliYunSmsService;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -340,6 +341,13 @@ class TestController extends \yii\web\Controller
             $j++;
 
         }
+    }
+
+    public function actionAli()
+    {
+        $service = new AliYunSmsService();
+        $res = $service->sendSms();
+        prd($res);
     }
 
 }
