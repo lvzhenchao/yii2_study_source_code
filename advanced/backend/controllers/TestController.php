@@ -343,11 +343,64 @@ class TestController extends \yii\web\Controller
         }
     }
 
-    public function actionAli()
+    public function actionAliSendSms()
     {
         $service = new AliYunSmsService();
-        $res = $service->sendSms();
-        prd($res);
+
+        $signName      = "阿里云短信测试";
+        $templateCode  = "SMS_154950909";
+        $phoneNumbers  = "15910371690";
+        $templateParam = json_encode(['code'=>'123456']);
+        $res = $service->sendSms($signName, $templateCode, $phoneNumbers, $templateParam);
+        prd($res->body);
+
+//        AlibabaCloud\SDK\Dysmsapi\V20170525\Models\SendSmsResponseBody Object
+//        (
+//            [bizId] => 615323044889168223^0
+//            [code] => OK
+//            [message] => OK
+//            [requestId] => F2DD642E-CC8A-5AB6-AB20-D838C4246E58
+//        )
+
+    }
+
+    public function actionAliSendSmsDetail()
+    {
+        $service = new AliYunSmsService();
+        $phoneNumber = '15910371690';
+        $bizId    = '615323044889168223^0';
+        $sendDate = '20220215';
+        $res = $service->getSendSmsDetails($phoneNumber, $bizId, $sendDate);
+        prd($res->body);
+
+//        AlibabaCloud\SDK\Dysmsapi\V20170525\Models\QuerySendDetailsResponseBody Object
+//        (
+//            [code] => OK
+//            [message] => OK
+//            [requestId] => 6544911E-A6F3-5094-9591-8069823A8FFF
+//            [smsSendDetailDTOs] => AlibabaCloud\SDK\Dysmsapi\V20170525\Models\QuerySendDetailsResponseBody\smsSendDetailDTOs Object
+//            (
+//                [smsSendDetailDTO] => Array
+//                    (
+//                        [0] => AlibabaCloud\SDK\Dysmsapi\V20170525\Models\QuerySendDetailsResponseBody\smsSendDetailDTOs\smsSendDetailDTO Object
+//                            (
+//                                [content] => 【阿里云短信测试】您正在使用阿里云短信测试服务，体验验证码是：123456，如非本人操作，请忽略本短信！
+//                                [errCode] => DELIVERED
+//                                [outId] =>
+//                                [phoneNum] => 15910371690
+//                                [receiveDate] => 2022-02-15 09:39:34
+//                                [sendDate] => 2022-02-15 09:39:28
+//                                [sendStatus] => 3
+//                                [templateCode] =>
+//                            )
+//                    )
+//
+//            )
+//            [totalCount] => 1
+//
+//
+//        )
+
     }
 
 }
