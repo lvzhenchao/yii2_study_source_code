@@ -40,11 +40,6 @@ class SmsController extends Controller
             prd($res->body->smsSignList);
         }
 
-        //[templateCode] => SMS_224135731
-        //[templateContent] => 验证码：${code}
-        //[templateName] => 验证码
-        //[templateType] => 0
-
         prd($res);
 
     }
@@ -59,6 +54,24 @@ class SmsController extends Controller
         $data['phoneNumbers']  = "15910371690";
         $data['templateParam'] = '{"code":"8888"}';
         $res = $service->sendSms($data);
+        if ($res->body->message == 'OK' && $res->body->code == 'OK') {
+            prd($res->body);
+        }
+
+        prd($res);
+
+    }
+
+    //阿里群发送短信
+    public function actionAliSendSmsBatch()
+    {
+        $service = new AliYunSmsService();
+
+        $data['signNameJson']      = ["展曲","展曲"];
+        $data['templateCode']      = "SMS_183770238";
+        $data['phoneNumberJson']   = ["15910371690","15313975639"];
+        $data['templateParamJson'] = ['{"code":"666"}','{"code":"666"}'];
+        $res = $service->sendBatchSms($data);
         if ($res->body->message == 'OK' && $res->body->code == 'OK') {
             prd($res->body);
         }
@@ -103,14 +116,17 @@ class SmsController extends Controller
     public function actionMontnetsSendSms()
     {
 
-        $service = new MontnetsSmsService();
-
         $data['userid']  = '';
         $data['pwd']     = '';
         $data['mobile']  = '15910371690';
-        $data['content'] = '验证码：6666，打死都不要告诉别人哦！';
+        $data['content'] = '验证码：666，打死都不要告诉别人哦！';
+
+        $service = new MontnetsSmsService($data['userid']);
         $res = $service->sendSms($data);
 
+        if ($res['result'] != 0 && isset($res['desc'])) {
+            $res['desc'] = iconv('GBK', 'UTF-8', urldecode($res['desc']));
+        }
         prd($res);
     }
 
@@ -118,13 +134,19 @@ class SmsController extends Controller
     public function actionMontnetsSendSmsBatch()
     {
 
-        $service = new MontnetsSmsService();
-
         $data['userid']  = '';
         $data['pwd']     = '';
+
+        //手机号码不能超过最大支持数量（1000）
         $data['mobile']  = '15910371690,15313975639';
         $data['content'] = '验证码：6666，打死都不要告诉别人哦！';
+
+        $service = new MontnetsSmsService($data['userid']);
         $res = $service->sendBatchSms($data);
+
+        if ($res['result'] != 0 && isset($res['desc'])) {
+            $res['desc'] = iconv('GBK', 'UTF-8', urldecode($res['desc']));
+        }
         prd($res);
 
     }
@@ -133,11 +155,16 @@ class SmsController extends Controller
     public function actionMontnetsSendSmsDetail()
     {
 
-        $service = new MontnetsSmsService();
-
         $data['userid']  = '';
         $data['pwd']     = '';
+
+        $service = new MontnetsSmsService($data['userid']);
         $res = $service->getRpt($data);
+
+        if ($res['result'] != 0 && isset($res['desc'])) {
+            $res['desc'] = iconv('GBK', 'UTF-8', urldecode($res['desc']));
+        }
+
         prd($res);
     }
 
@@ -145,10 +172,10 @@ class SmsController extends Controller
     public function actionMontnetsBalance()
     {
 
-        $service = new MontnetsSmsService();
-
         $data['userid']  = '';
         $data['pwd']     = '';
+
+        $service = new MontnetsSmsService($data['userid']);
         $res = $service->getBalance($data);
         pr($res);
         if ($res['result'] === 0) {
