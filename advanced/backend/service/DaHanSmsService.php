@@ -66,6 +66,12 @@ class DaHanSmsService {
                 return $result;
             }
 
+            if (count(explode(',', $data['mobile'])) > 1000) {
+                $result['result'] = $this->ERROR_310099;
+                $result['msg'] = "号码数量最多不能超过1000";
+                return $result;
+            }
+
             $data['account']  = $this->Account;
             $data['password'] = $this->Password;
 

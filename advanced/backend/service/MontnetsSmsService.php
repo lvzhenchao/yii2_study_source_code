@@ -9,9 +9,15 @@ class MontnetsSmsService {
     private $BaseUrl;
     public $ERROR_310099=-310099;
 
-    public function  __construct()
+    public function  __construct($account)
     {
-        $this->BaseUrl = Yii::$app->params['montnetsCloudSms']['url'];
+
+        //JS、H1
+        if (strpos($account, 'H1') === 0) {
+            $this->BaseUrl = Yii::$app->params['montnetsCloudSms']['h_url'];
+        } else if (strpos($account, 'JS') === 0) {
+            $this->BaseUrl = Yii::$app->params['montnetsCloudSms']['j_url'];
+        }
 
     }
 
@@ -22,8 +28,8 @@ class MontnetsSmsService {
      * 必填项参数
      * $data['userid']  账号
      * $data['pwd']     密码
-     * $data['mobile']  手机号
-     * $data['content'] 发送内容
+     * $data['mobile']  手机号    短信接收的手机号：只能填一个手机号码
+     * $data['content'] 发送内容  短信内容：最大支持350个字，一个字母或一个汉字都视为一个字。编码方法：urlencode（GBK明文）
      *
      * 可选项参数
      * $data['svrtype'] 业务类型
@@ -111,6 +117,12 @@ class MontnetsSmsService {
             if (empty($data['userid']) || empty($data['pwd']) || empty($data['mobile']) || empty($data['content'])) {
                 $result['result'] = $this->ERROR_310099;
                 $result['msg'] = "参数缺失";
+                return $result;
+            }
+
+            if (count(explode(',', $data['mobile'])) > 1000) {
+                $result['result'] = $this->ERROR_310099;
+                $result['msg'] = "号码数量最多不能超过1000";
                 return $result;
             }
 

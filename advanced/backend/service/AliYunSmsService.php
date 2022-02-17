@@ -283,15 +283,15 @@ class AliYunSmsService {
 
 
     /**
-     * 批量发送短信 : 未测
+     * 批量发送短信
      *
      * 必填项参数
-     * @param string $data['SignNameJson']      短信签名名称，JSON数组格式
+     * @param string $data['signNameJson']      短信签名名称，JSON数组格式
      * @param string $data['templateCode']      "SMS_154950909" 短信模板
-     * @param string $data['PhoneNumberJson']   接收短信的手机号码，JSON数组格式
+     * @param string $data['phoneNumberJson']   接收短信的手机号码，JSON数组格式 一次请求中，最多可以向100个手机号码分别发送短信
      *
      * 可选项参数
-     * @param string $data['TemplateParamJson']   短信模板变量对应的实际值，JSON格式 [{"name":"TemplateParamJson"},{"name":"TemplateParamJson"}]
+     * @param string $data['templateParamJson']   短信模板变量对应的实际值，JSON格式 [{"name":"TemplateParamJson"},{"name":"TemplateParamJson"}]
      *
      */
     public function sendBatchSms($data){
@@ -299,20 +299,34 @@ class AliYunSmsService {
             return "参数缺失";
         }
 
+        if (count($data['signNameJson']) != count($data['phoneNumberJson']) && count($data['signNameJson']) != count($data['templateParamJson'])) {
+            return "参数数量需匹配";
+        }
+
+        if (count($data['phoneNumberJson']) > 100) {
+            return  "号码数量最多不能超过100";
+        }
+
         if (is_array($data['phoneNumberJson'])) {
             $data['phoneNumberJson'] = json_encode($data['phoneNumberJson']);
         }
 
+        if (is_array($data['signNameJson'])) {
+            $data['signNameJson'] = json_encode($data['signNameJson']);
+        }
+
         if (isset($data['templateParamJson']) && is_array($data['templateParamJson'])) {
             $data['templateParamJson'] = json_encode($data['templateParamJson']);
+        } else if (!isset($data['templateParamJson'])) {
+            $data['templateParamJson'] = '';
         }
 
 
         $sendBatchSmsRequest = new SendBatchSmsRequest([
-            "signName"      => $data['signNameJson'],
-            "templateCode"  => $data['templateCode'],
-            "phoneNumbers"  => $data['phoneNumberJson'],
-            "templateParam" => isset($data['templateParamJson']) ? $data['templateParamJson'] : ''
+            "signNameJson"      => $data['signNameJson'],
+            "templateCode"      => $data['templateCode'],
+            "phoneNumberJson"   => $data['phoneNumberJson'],
+            "templateParamJson" => $data['templateParamJson'],
         ]);
         return $this->client->sendBatchSms($sendBatchSmsRequest);
     }
