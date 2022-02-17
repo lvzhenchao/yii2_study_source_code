@@ -64,13 +64,15 @@ class AliYunSmsService {
 
         if (isset($data['templateParam']) && is_array($data['templateParam'])) {
             $data['templateParam'] = json_encode($data['templateParam']);
+        } else if (!isset($data['templateParam'])) {
+            $data['templateParam'] = '';
         }
 
         $sendSmsRequest = new SendSmsRequest([
             "signName"      => $data['signName'],
             "templateCode"  => $data['templateCode'],
             "phoneNumbers"  => $data['phoneNumbers'],
-            "templateParam" => isset($data['templateParam']) ? $data['templateParam'] : '',
+            "templateParam" => $data['templateParam'],
         ]);
 
         return $this->client->sendSms($sendSmsRequest);
