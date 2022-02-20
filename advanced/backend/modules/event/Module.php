@@ -1,9 +1,9 @@
 <?php
 
-namespace backend\modules\events;
+namespace backend\modules\event;
 
 /**
- * events module definition class
+ * event module definition class
  */
 class Module extends \yii\base\Module
 {

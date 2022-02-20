@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\events\models;
+namespace backend\modules\event\models;
 
 //给管理员发邮件
 class Admin {

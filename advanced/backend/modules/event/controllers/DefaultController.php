@@ -1,11 +1,11 @@
 <?php
 
-namespace backend\modules\events\controllers;
+namespace backend\modules\event\controllers;
 
 use yii\web\Controller;
 
 /**
- * Default controller for the `events` module
+ * Default controller for the `event` module
  */
 class DefaultController extends Controller
 {

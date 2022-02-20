@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\events\models;
+namespace backend\modules\event\models;
 
 //记录日志
 class Olog  {
