@@ -4,6 +4,7 @@ namespace backend\modules\event\controllers;
 
 use backend\modules\event\events\UserLoginEvent;
 use yii\web\Controller;
+use yii\web\User;
 
 /**
  * Default controller for the `event` module
@@ -21,6 +22,11 @@ class UserController extends Controller
         $this->on(self::EVENT_USER_LOGIN, ['backend\modules\event\models\OLog', 'add']);
         $this->on(self::EVENT_USER_LOGIN, ['backend\modules\event\models\Admin', 'sendMail']);
         $this->on(self::EVENT_USER_LOGIN, ['backend\modules\event\models\User', 'notifyFriend']);
+
+        //也可以绑定 yii\web\User里面的事件
+//        $this->on(User::EVENT_AFTER_LOGIN, ['backend\modules\event\models\OLog', 'notifyFriend']);
+//        $this->on(User::EVENT_AFTER_LOGIN, ['backend\modules\event\models\Admin', 'notifyFriend']);
+//        $this->on(User::EVENT_AFTER_LOGIN, ['backend\modules\event\models\User', 'notifyFriend']);
 
         return parent::__construct($id, $module, $config = []);
     }
