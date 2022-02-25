@@ -14,12 +14,15 @@ class UserController extends Controller
     const EVENT_USER_LOGIN = 'user_login';
 
     //事件绑定、观察者订阅主题
-    public function __construct()
+    public function __construct($id, $module, $config = [])
     {
+
         //绑定事件
         $this->on(self::EVENT_USER_LOGIN, ['backend\modules\event\models\OLog', 'add']);
         $this->on(self::EVENT_USER_LOGIN, ['backend\modules\event\models\Admin', 'sendMail']);
         $this->on(self::EVENT_USER_LOGIN, ['backend\modules\event\models\User', 'notifyFriend']);
+
+        return parent::__construct($id, $module, $config = []);
     }
 
     public function actionIndex()
