@@ -24,14 +24,14 @@ class UserController extends Controller
         //使用匿名函数记录到框架库中
         $this->on(self::EVENT_USER_LOGIN, function ($event) {
                             $time = date("Y-m-d H:i:s");
-// prd($event);
+// dd($event);
 // backend\modules\event\events\UserLoginEvent Object
 // (
 //    [userId] => 111
-//    [name] =>
+//    [name] => user_login
 //    [sender] =>  backend\modules\event\controllers\UserController Object（内容）
-//    [handled] =>
-//    [data] =>
+//    [handled] => false
+//    [data] => null
 //  )
                             \Yii::error("有人在{$time}登陆了");
                         });
@@ -59,14 +59,14 @@ class UserController extends Controller
         //如何确定给谁发短信呢
         $event = new UserLoginEvent();
         $event->userId = 111;
-// prd($event);
+// dd($event);
 // backend\modules\event\events\UserLoginEvent Object
 // (
 //    [userId] => 111
-//    [name] =>
-//    [sender] =>
-//    [handled] =>
-//    [data] =>
+//    [name] => NULL
+//    [sender] => NULL
+//    [handled] => false
+//    [data] => NULL
 //  )
         $this->trigger(self::EVENT_USER_LOGIN, $event);
 
