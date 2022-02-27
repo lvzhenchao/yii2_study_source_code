@@ -23,6 +23,6 @@ yii\base\Event::data：附加事件处理器时传入的数据，默认为空，
 `
 特定时间和特定地点
 $foo->on(Foo::EVENT_HELLO, function ($event) {
-    $event->handled = true;
+    $event->handled = true;//后面的的事件都不会执行
 });
 `

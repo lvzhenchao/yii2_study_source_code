@@ -34,6 +34,7 @@ class UserController extends Controller
 //    [data] => null
 //  )
                             pr("有人在{$time}登陆了");
+//            $event->handled = true;
                         });
 
         $this->on(self::EVENT_USER_LOGIN, ['backend\modules\event\models\Admin', 'sendMail']);
@@ -42,6 +43,9 @@ class UserController extends Controller
 //        $admin = Admin::findOne(1);
 //        $this->on(self::EVENT_USER_LOGIN, [$admin, 'sendMail']);
         $this->on(self::EVENT_USER_LOGIN, ['backend\modules\event\models\User', 'notifyFriend']);
+
+        //on的第四个参数：是否将追加的时间放到末尾执行，默认是
+        $this->on(self::EVENT_USER_LOGIN, ['backend\modules\event\models\Gov', 'notify'], null, false);
 
         //也可以绑定 yii\web\User里面的事件
 //        $this->on(User::EVENT_AFTER_LOGIN, ['backend\modules\event\models\OLog', 'notifyFriend']);
