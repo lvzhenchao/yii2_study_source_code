@@ -33,7 +33,7 @@ class UserController extends Controller
 //    [handled] => false
 //    [data] => null
 //  )
-                            \Yii::error("有人在{$time}登陆了");
+                            pr("有人在{$time}登陆了");
                         });
 
         $this->on(self::EVENT_USER_LOGIN, ['backend\modules\event\models\Admin', 'sendMail']);

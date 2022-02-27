@@ -18,3 +18,11 @@ yii\base\Event::data：附加事件处理器时传入的数据，默认为空，
 
 ## 事件处理器的顺序
 - 将按附加次序依次调用
+- 特定情况下可以阻断事件的调用
+
+`
+特定时间和特定地点
+$foo->on(Foo::EVENT_HELLO, function ($event) {
+    $event->handled = true;
+});
+`
