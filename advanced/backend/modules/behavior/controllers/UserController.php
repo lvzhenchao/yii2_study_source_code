@@ -10,6 +10,8 @@ use yii\web\Controller;
  */
 class UserController extends Controller
 {
+
+
     /**
      * Renders the index view for the module
      * @return string
@@ -28,5 +30,12 @@ class UserController extends Controller
         pr($model->touch('do_time'));
         prd($model->toArray());
 
+    }
+
+    //使用自定义的行为类
+    public function actionTest()
+    {
+        $model = new User();
+        echo $model->name;
     }
 }

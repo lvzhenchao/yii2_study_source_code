@@ -1,6 +1,7 @@
 <?php
 namespace backend\modules\behavior\models;
 
+use backend\modules\behavior\behaviors\HelloBehavior;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\AttributeTypecastBehavior;
 use yii\behaviors\BlameableBehavior;
@@ -41,6 +42,11 @@ class User extends \common\models\User {
 //                //自动转化模型属性格式的行为，对于类似MongoDB或Redis等模式的数据库来说非常有用
 //                'class' => AttributeTypecastBehavior::className(),
 //            ]
+
+        //引入自定义的行为类
+            [
+                'class' => HelloBehavior::className()
+            ],
         ];
     }
 }
