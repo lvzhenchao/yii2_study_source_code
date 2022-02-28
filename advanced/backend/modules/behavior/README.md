@@ -17,3 +17,62 @@
 # 行为是一个类，注入到yii的组件并未其增加功能；两种角色：
 - 行为类拥有一些功能，可以注入到组件类
 - 组件类 增强功能的类
+
+# 组件为何能直接使用行为的属性
+## 一个魔术方法__get 当访问不存在或者不能访问的成员变量时对象会自动调用__get()方法
+`
+
+    通过这个方法，yii2的Component类访问到了关联行为的属性
+    public function __get($name) {
+        $getter = 'get' . $name;
+        if (method_exists($this, $getter)) {
+            // read property, e.g. getName()
+            return $this->$getter();
+        }
+    
+        // behavior property
+        $this->ensureBehaviors();
+        foreach ($this->_behaviors as $behavior) {
+            if ($behavior->canGetProperty($name)) {
+                return $behavior->$name;
+            }
+        }
+        ...
+    }
+`
+
+# 行为的方法是如何注入到组件类中
+## __call 魔术方法  当发现一个类的方法未定义时会触发此函数
+- public mixed __call ( string $name , array $arguments )
+## call_user_func_array 调用回调函数，并把一个数组参数作为回调函数的参数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
