@@ -46,6 +46,15 @@
 - public mixed __call ( string $name , array $arguments )
 ## call_user_func_array 调用回调函数，并把一个数组参数作为回调函数的参数
 
+# Behavior 行为类有一个叫做 events函数用来返回所有相关事件
+`
+public function events(){
+		return [
+			ActiveRecord::EVENT_BEFORE_INSERT => 'beforeInsert',
+		];
+}
+`
+
 
 
 
