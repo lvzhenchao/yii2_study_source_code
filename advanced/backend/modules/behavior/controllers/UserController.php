@@ -35,7 +35,11 @@ class UserController extends Controller
     //使用自定义的行为类
     public function actionTest()
     {
+//        $model = new User();
+//        echo $model->name;
+
         $model = new User();
-        echo $model->name;
+        $model->username = 'abei2017';
+        dd($model->save());
     }
 }
