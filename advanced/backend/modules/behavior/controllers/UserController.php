@@ -2,6 +2,7 @@
 
 namespace backend\modules\behavior\controllers;
 
+use backend\modules\behavior\behaviors\HelloBehavior;
 use backend\modules\behavior\models\User;
 use yii\web\Controller;
 
@@ -38,8 +39,19 @@ class UserController extends Controller
 //        $model = new User();
 //        echo $model->name;
 
+        //静态绑定
+//        $model = new User();
+//        $model->username = 'abei2017';
+//        dd($model->save());
+
+        //动态绑定
         $model = new User();
-        $model->username = 'abei2017';
+
+        $model->attachBehaviors([
+            HelloBehavior::className()
+        ]);
+
+        $model->username = 'abei1982';
         dd($model->save());
     }
 }
