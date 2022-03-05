@@ -67,6 +67,35 @@ public function events(){
 - IDE对trait更友好，因为是语言结构
 - 行为只能服务于组件类，而trait没有这个限制
 
+# Trait和行为的目的是解决类只能单继承的问题；trait有一点很重要，就是不能被实例化
+`
+
+    trait Mouse {
+        public $name = '鼠标';
+        public function click() {
+            echo "鼠标点击了一下";
+        }
+    }
+    
+    class Computer {
+        public function sayName(){
+            echo "我是一台电脑";
+        }
+    }
+    
+    class Macbook extends Computer {
+        use Mouse;
+        public function say(){
+            echo "我是一条有逼格的macbook";
+        }
+    }
+    
+    $model= new Macbook ();
+    $model->say();// 我是一条有逼格的macbook
+    $model->sayName(); // 我是一台电脑
+    $model->click(); // 鼠标点击了一下
+`
+
 
 
 
