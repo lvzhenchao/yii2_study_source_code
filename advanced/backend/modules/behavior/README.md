@@ -95,6 +95,9 @@ public function events(){
     $model->sayName(); // 我是一台电脑
     $model->click(); // 鼠标点击了一下
 `
+# Trait和行为对于优先级的问题
+- 对于trait，优先顺序是来自当前类的成员覆盖了 trait 的方法，而 trait 则覆盖了被继承的方法。
+- 对于行为，优先顺序是来自当前类的成员覆盖了被继承的方法，而继承的方法则覆盖了行为的方法
 
 
 
