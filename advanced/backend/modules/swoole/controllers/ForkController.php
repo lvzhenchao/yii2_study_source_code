@@ -24,7 +24,7 @@ class ForkController extends Controller
         }
     }
 
-    //进程间的的通信
+    //进程间的的通信：进程间空间独立，数据不能共享
     public function actionCommun()
     {
         $a = "lzc";
