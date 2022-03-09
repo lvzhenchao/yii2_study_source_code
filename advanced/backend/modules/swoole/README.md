@@ -23,3 +23,9 @@
 - $mode 运行模式；SWOOLE_PROCESS多进程模式（默认）；SWOOLE_BASE基本模式
 - $sock_type 指定socket类型；TCP(默认)、UDP、TCP6、UDP6、UnixSocket Stream/Dgram 
 
+## $server->start();启动服务器；启动成功后会创建worker_num+2个进程
+- Master 主进程：主进程内有多个Reactor线程，基于epoll/kqueue进行网络事件轮询
+- Manager 进程：对所有Worker进程进行管理；
+- Worker 进程：对收到的数据进行处理，包括协议解析和响应请求。未设置worker_num，底层会启动与CPU数量一致的Worker进程
+
+
