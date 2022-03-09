@@ -16,3 +16,10 @@
 
 ## 线程安全：正确处理多个线程之间的【共享变量】，使程序功能正确完成
 - php的TSRM机制对全局变量和静态变量进行了隔离，将全局变量和静态变量都复制了一份，各线程使用的都是主线程的一个备份，避免了变量冲突
+
+# swoole的server参数详解 server(string $host, int $port = 0, int $mode = SWOOLE_PROCESS, int $sock_type = SWOOLE_SOCK_TCP)
+- $host IPv4使用 127.0.0.1表示监听本机，0.0.0.0表示监听所有地址;IPv6使用::1表示监听本机，:: (相当于0:0:0:0:0:0:0:0) 表示监听所有地址
+- $port 监听的端口；监听小于1024的端口需要root权限；端口被占用时server->start时会失败
+- $mode 运行模式；SWOOLE_PROCESS多进程模式（默认）；SWOOLE_BASE基本模式
+- $sock_type 指定socket类型；TCP(默认)、UDP、TCP6、UDP6、UnixSocket Stream/Dgram 
+
