@@ -29,4 +29,16 @@
 - Worker 进程：对收到的数据进行处理，包括协议解析和响应请求。未设置worker_num，底层会启动与CPU数量一致的Worker进程
 - pstree  -p  进程号
 
+## $server->set([]); 设置运行各项参数；服务启动后通过$serv->setting 来访问set()方法设置的参数数组
+- max_conn最大连接，最大允许维持多少个tcp连接，超过此数量后，新连接会被拒绝
+- max_request最大请求数
+- reactor_num线程数，充分利用多核
+- worker_num进程数，设置启动的进程数量
+- task_worker_num配置task进程的数量；配置此参数将会启用task功能；并且需要注册onTask、onFinish2个事件回调函数
+- log_file错误日志文件
+- heartbeat_check_interval=>3 心跳检测机制，单位秒；swoole会轮询所有TCP连接，将超过心跳时间的连接关闭掉
+- heartbeat_idle_time=>60 Tcp连接的最大闲置时间
+- daemonize=>1 守护进程；执行php server.php 将转入后台作为守护进程运行
+- enable_coroutine是否开启协程
+
 
