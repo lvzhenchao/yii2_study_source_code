@@ -41,4 +41,57 @@
 - daemonize=>1 守护进程；执行php server.php 将转入后台作为守护进程运行
 - enable_coroutine是否开启协程
 
+## $server->on() 注册事件回调函数；
+- 第一个参数：回调的名称，大小写不敏感
+- 第二个参数：回调函数
+
+## 回调函数4种写法
+### 第一种 匿名函数
+`
+
+    $a = 'lampol';
+    
+    $server->on(‘start’,function($serv) use($a){  //use向匿名函数传递参数
+            echo 'hello....'.$a;
+    });
+
+`
+### 第二种 函数
+`
+
+    $server->on('start','test_start');
+    
+    function test_start($serv){
+        echo 'master_pid......========'.$serv->master_pid;
+    }
+
+`
+### 第三种 对象方法
+`
+
+    $test = new Test();
+    $server->on('start',[$test,'test_start']);
+    
+    class Test{
+    
+        public  function test_start($serv){
+            echo 'master_pid......========'.$serv->master_pid;
+        }
+    }
+
+`
+### 第三种 类静态方法
+
+`
+
+    $server->on('start','Test::test_start');
+    
+    class Test{
+    
+        public static function test_start($serv){
+            echo 'master_pid......========'.$serv->master_pid;
+        }
+    }
+
+`
 
