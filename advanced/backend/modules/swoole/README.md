@@ -94,4 +94,80 @@
     }
 
 `
+## 线程
+- 可以同一时间同时执行多个线程，开辟多条线程开销很大，适合多任务同时处理，cpu密集型
+
+## 协程
+- 特性：极高的执行效率，因为不需要线程切换，而是有程序自身控制，没有现成切换的开销
+- 适用场景：适合对【某任务】进行分时处理；IO密集型
+- 协程在底层实现上是单线程的，因此同一时间只有一个协程在工作，协程的执行是串行的
+
+`
+
+    创建协程的方式一
+    Co::create(function(){
+        Co::sleep(2);
+        echo "Done.\n";
+    });
+    
+    创建协程的方式二 (将废弃)
+    go(function () {
+        Co::sleep(1);
+        echo "Done.\n";
+    });
+    
+    创建协程的方式三
+    $scheduler = new Coroutine\Scheduler;
+    $scheduler->add(function () {
+        Co::sleep(1);
+        echo "Done.\n";
+    });
+    $scheduler->start();
+    
+    创建协程的方式四
+    Co\run(function () {
+        Co::sleep(1);
+        echo "Done.\n";
+    });
+
+    sleep() 可以看做是 CPU密集型任务, 不会引起协程的调度
+    Co::sleep() 模拟的是 IO密集型任务, 会引发协程的调度
+
+
+`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
