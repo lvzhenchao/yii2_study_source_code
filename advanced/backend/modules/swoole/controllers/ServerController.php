@@ -10,7 +10,7 @@ class ServerController extends Controller
 
     public function actionIndex()
     {
-        $server = new swoole_server('0.0.0.0', 8888, SWOOLE_PROCESS, SWOOLE_SOCK_TCP);
+        $server = new \swoole_server('0.0.0.0', 8888, SWOOLE_PROCESS, SWOOLE_SOCK_TCP);
         $setting = [
             'worker_num'=>6,
             'reactor_num'=>4,
