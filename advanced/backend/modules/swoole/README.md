@@ -24,6 +24,33 @@
     - 检查
     php -m
 `
+# 进程：运行的程序；程序运行的载体；它的上一层是CPU
+- ps -ef | grep php 查看PHP相关进程
+
+`
+
+    www        923  9328  0 22:18 ?        00:00:00 php-fpm: pool www
+    root      2132  1487  0 22:26 pts/0    00:00:00 grep --color=auto php
+    root      4458     1  0 06:13 ?        00:00:27 php-fpm: master process (/usr/local/php/etc/php-fpm.conf)
+    vagrant   4462  4458  0 06:13 ?        00:00:00 php-fpm: pool www
+    root      4499     1  0 06:13 ?        00:00:08 php-fpm: master process (/www/server/php/72/etc/php-fpm.conf)
+    www       4501  4499  0 06:13 ?        00:00:03 php-fpm: pool www
+    www       4502  4499  0 06:13 ?        00:00:04 php-fpm: pool www
+    www       4503  4499  0 06:13 ?        00:00:04 php-fpm: pool www
+    www       4504  4499  0 06:13 ?        00:00:03 php-fpm: pool www
+    www       4505  4499  0 06:13 ?        00:00:04 php-fpm: pool www
+    www       4506  4499  0 06:13 ?        00:00:03 php-fpm: pool www
+    www       4507  4499  0 06:13 ?        00:00:03 php-fpm: pool www
+    www       4508  4499  0 06:13 ?        00:00:04 php-fpm: pool www
+    www       4509  4499  0 06:13 ?        00:00:03 php-fpm: pool www
+    www       4510  4499  0 06:13 ?        00:00:03 php-fpm: pool www
+    www       4578  4499  0 06:13 ?        00:00:04 php-fpm: pool www
+    www       7420  4499  0 18:16 ?        00:00:00 php-fpm: pool www
+    www       7422  4499  0 18:16 ?        00:00:00 php-fpm: pool www
+
+`
+# 线程：程序执行中的一个单一顺序控制流程，是程序执行流的最小单元，是处理器调度和分派的基本单位。一个进程可以有一个或多个线程
+
 
 # PHP实现多进程
 ## pcntl_fork在当前进程当前位置产生分支（子进程）；fork是创建了一个子进程；
