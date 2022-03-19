@@ -15,26 +15,22 @@ class ForkController extends Controller
     {
         $pid = pcntl_fork();
 
-        if ($pid == -1) {
-            die("could not fork");
-        } elseif($pid == 0) {//在子进程内返回0
-            prd("我是子进程id：".getmypid());
-        } else {//在父进程内，返回子进程号 大于0
-            prd("我也是子进程".$pid);
-        }
-    }
-
-    //进程间的的通信：进程间空间独立，数据不能共享
-    public function actionCommun()
-    {
-        $a = "lzc";
-        $pid = pcntl_fork();
+        echo $pid.PHP_EOL;
 
         if ($pid > 0) {
-            $a .= "zhh";
-            prd($a);
+            pr("我是父进程执行得到的子进程号：".$pid);
         } else {
-            prd($a);
+            pr("我是子进程执行得到的自己的进程号：".$pid);
         }
+
+        //单纯的执行 php fork.php
+        //会输出：8198  父进程执行得到的子进程号
+        //0 子进程得到的
+
+        //因为fork是创建了一个子进程，父进程和子进程都从fork的位置开始向下继续执行，执行了两次
+        //父进程执行的过程中，得到的fork返回值为子进程号
+        //子进程执行的过程中，得到的fork返回值是0
     }
+
+
 }
