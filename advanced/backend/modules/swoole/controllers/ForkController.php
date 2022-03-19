@@ -30,6 +30,18 @@ class ForkController extends Controller
         //因为fork是创建了一个子进程，父进程和子进程都从fork的位置开始向下继续执行，执行了两次
         //父进程执行的过程中，得到的fork返回值为子进程号
         //子进程执行的过程中，得到的fork返回值是0
+
+        //PHP fork_commun.php 证明进程之间不会直接同行
+        $pid = pcntl_fork();
+        $str = 'lzc';
+        if ($pid > 0) {
+            $str .= "123";
+            echo $str.PHP_EOL; //lzc123
+        } else {
+            echo $str.PHP_EOL; //lzc
+        }
+
+
     }
 
 
