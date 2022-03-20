@@ -76,6 +76,21 @@
 - 套接字通信
 - 第三方通信：文件操作，mysql、redis等方式
 
+# 进程状态 top
+- 运行中、等待、睡眠、终止
+- 僵尸进程：是当子进程比父进程先结束，而父进程又没有回收子进程，释放子进程占用的资源，此时子进程将成为一个僵尸进程
+
+`
+
+    Tasks: 145 total,   2 running, 142 sleeping,   0 stopped,   1 zombie //僵尸进程
+    %Cpu(s):  2.9 us,  0.7 sy,  0.0 ni, 96.2 id,  0.0 wa,  0.0 hi,  0.2 si,  0.0 st
+    KiB Mem:   3883788 total,  1994148 used,  1889640 free,     3140 buffers
+    KiB Swap:  1081340 total,        0 used,  1081340 free.   542144 cached Mem
+
+`
+# 进程信号
+- sig字符串开头：sigup、sigstop、sigcont
+
 ## php默认并不支持多线程，要用多线程需要安装pthread扩展
 
 ## 线程安全：正确处理多个线程之间的【共享变量】，使程序功能正确完成
