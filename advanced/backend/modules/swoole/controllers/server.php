@@ -26,3 +26,36 @@ $server->start();
 
 //netstat -nltup 查看UDP端口号
 //udp        0      0 0.0.0.0:6666        0.0.0.0:*          19914/php
+
+
+//start()启动后，会监听TCP/UDP端口
+//启动成功后，会创建worker_num+2个进程。
+//2个进程：Master进程+Manager进程
+//Master主进程：内有多个Reactor线程，收到数据转发到worker进程去处理
+//Manager进程：对所有worker进程进行管理，worker进程结束或者发生异常时自动回收，并创建新的Worker进程
+//Worker进程：对收到的数据进行处理，包括协议解析和响应请求：【处理代码主要在这里】
+//Task进程
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
