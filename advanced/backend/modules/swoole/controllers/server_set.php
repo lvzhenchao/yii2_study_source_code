@@ -9,7 +9,8 @@ $server->on("receive", function (){//这个方法是TCP协议运行时必须有�
 $server->set([
     "worker_num" => 6, //设置worker进程数
     "reactor_num" => 3,//设置线程数量
-    "task_worker_num"=>3 //task进程数：务必要注册onTask || onFinish2个事件回调函数
+    "task_worker_num"=>3, //task进程数：务必要注册onTask || onFinish2个事件回调函数
+//    "daemonize"=>true,//守护进程  killall php
 ]);
 
 $server->on("task", function (){
