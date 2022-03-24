@@ -2,8 +2,14 @@
 
 $server = new Swoole\Server('0.0.0.0', 6666, SWOOLE_PROCESS, SWOOLE_SOCK_TCP);
 
-$server->on("receive", function (){//这个方法是TCP协议运行时必须有的
-    echo "我是receive回调方法";
+$server->on("receive", function ($params){//这个方法是TCP协议运行时必须有的
+    //var_dump($params->setting);//另开一个xshell telnet 127.0.0.1 6666 随便输入点儿东西
+    print_r($params->master_pid);
+    print_r($params->manager_pid);
+    print_r($params->worker_id);//多个里面的其中一个
+
+
+
 });
 
 $server->set([
@@ -29,6 +35,21 @@ $server->on("task", function (){
 //           ├─{php}(26827)
 //           ├─{php}(26828)
 //           └─{php}(26829)
+
+//$setting
+//set()函数所设置的参数会保存到Server->$setting属性上
+//
+//$master_pid
+//返回当前服务器主进程的PID。
+//
+//$manager_pid
+//返回当前服务器管理进程的PID。
+//
+//$worker_id
+//得到当前Worker进程的编号，包括Task进程。
+//
+//$worker_pid
+//得到当前Worker进程的操作系统进程ID
 
 //telnet 127.0.0.1 6666 运行完之后再去输入随意字符；相当于去请求了
 
