@@ -5,8 +5,8 @@ $server = new Swoole\Server('0.0.0.0', 6666, SWOOLE_PROCESS, SWOOLE_SOCK_TCP);
 $server->on("receive", function ($params){//这个方法是TCP协议运行时必须有的
     //var_dump($params->setting);//另开一个xshell telnet 127.0.0.1 6666 随便输入点儿东西
 
-//    var_dump($params->master_pid);
-//    var_dump($params->manager_pid);
+//    var_dump($params->master_pid);  //onStart/onWorkerStart 之后获取到
+//    var_dump($params->manager_pid); //onStart/onWorkerStart 之后获取到
 //    var_dump($params->worker_id);
 //    var_dump($params->worker_pid);//多个里面的其中一个
 
