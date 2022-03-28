@@ -21,6 +21,11 @@ $server->on("workerstart", function ($serv, $worker_id) {//WorkerStart/onStart �
     }
 
 });
+
+$server->on("connect", function ($serv,$fd,$reactorId) {//新的连接进入时，在 worker 进程中回调
+    echo "fd:".$fd."reactorId:".$reactorId.PHP_EOL;
+});
+
 $server->set([
     "task_worker_num"=>3, //task进程数：务必要注册onTask || onFinish2个事件回调函数
 ]);
