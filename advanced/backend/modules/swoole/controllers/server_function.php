@@ -32,9 +32,16 @@ $server->set([
 ]);
 
 $server->on("task", function ($serv,$task_id,$src_worker_id, $data){
+    sleep(5);
     echo "task....task_id:".$task_id.PHP_EOL;
     echo "task....src_worker_id:".$src_worker_id.PHP_EOL;
     echo "task....data:".$data.PHP_EOL;
+
+    return "success";
+});
+
+$server->on("finish", function ($serv,$task_id,$res){
+    echo "完事儿了".$res;
 });
 
 
