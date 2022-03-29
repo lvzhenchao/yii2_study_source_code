@@ -3,7 +3,10 @@
 $server = new Swoole\Server('0.0.0.0', 6666, SWOOLE_PROCESS, SWOOLE_SOCK_TCP);
 
 $server->on("receive", function ($serv){//这个方法是TCP协议运行时必须有的
-    $serv->task("send mail");
+//    $serv->task("send mail");
+    $serv->task("send mail", -1, function ($serv, $task_id, $res) {
+        echo "task_res...".$res;
+    });
     echo "login...".PHP_EOL;
 });
 
@@ -40,9 +43,9 @@ $server->on("task", function ($serv,$task_id,$src_worker_id, $data){
     return "success";
 });
 
-$server->on("finish", function ($serv,$task_id,$res){
-    echo "完事儿了".$res;
-});
+//$server->on("finish", function ($serv,$task_id,$res){
+//    echo "完事儿了".$res;
+//});
 
 
 
