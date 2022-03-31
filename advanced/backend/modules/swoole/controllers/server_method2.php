@@ -24,4 +24,5 @@ $server->start();
 
 //getClientInfo()
 //getClientList()
+//bind()
 
