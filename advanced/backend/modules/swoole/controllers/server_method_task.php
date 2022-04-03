@@ -42,5 +42,6 @@ $server->start();
 //taskwait($data, $timeout = 0.5, $dstWorkerId = -1) 同步等待方法，任务运行的时间只要超过了$timeout,就会直接返回结果
 //taskWaitMulti(array $tasks, float $timeout = 0.5)并发执行多个 task 异步任务
 ////多个任务并发执行的数量跟task_worker_num数量设置有关
+//taskCo()并发协程
 
 
