@@ -9,8 +9,12 @@ $server = new \Swoole\Server('0.0.0.0', 6666, SWOOLE_PROCESS, SWOOLE_SOCK_TCP);/
 //是个对象
 //print_r($server);
 
-$server->on("receive", function (){//这个方法是TCP协议运行时必须有的
-    echo "我是receive回调方法";
+$server->on("connect", function ($serv, $fd){//这个方法是TCP协议运行时必须有的
+    echo "connected success...".$fd.PHP_EOL;
+});
+
+$server->on("receive", function ($serv, $fd, $reactor_id, $data){//这个方法是TCP协议运行时必须有的
+    echo "我是receive回调方法...data".$data.PHP_EOL;
 });
 
 //$server->on("packet", function (){//这个方法是UDP协议运行时必须有的
