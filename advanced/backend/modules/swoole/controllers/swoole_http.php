@@ -14,6 +14,11 @@ $http->on('request', function ($request, $response) {
     $response->write("hello write2");
 });
 
+$server->set([
+    'document_root' => '/data/webroot/', // v4.4.0以下版本, 此处必须为绝对路径
+    'enable_static_handler' => true,
+]);
+
 $http->start();
 
 //linux服务器内访问
