@@ -14,7 +14,7 @@ $process->start();
 
 swoole_process::wait();//等待子进程执行完之后，主进程再结束；回收结束运行的子进程
 
-
+//Swoole\Process->exec(string $execfile, array $args);执行一个外部程序
 
 //查看进程：ps -ef | grep php
 //root     32371 17833  0 21:38 pts/0    00:00:00 master process:php
