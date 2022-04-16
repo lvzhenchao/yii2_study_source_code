@@ -18,7 +18,7 @@ Co::create(function (){
 //echo "end...".PHP_EOL;
 
 echo "start...".PHP_EOL;
-//有问题
+//有问题：多个协程才会没问题
 //sleep(3);
 //Co::sleep(1)
 
