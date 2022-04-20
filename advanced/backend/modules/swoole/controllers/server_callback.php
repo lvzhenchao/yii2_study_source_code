@@ -5,7 +5,8 @@ $server = new Swoole\Server('0.0.0.0', 6666, SWOOLE_PROCESS, SWOOLE_SOCK_TCP);
 $server->on("receive", function ($serv){//这个方法是TCP协议运行时必须有的
 //    $serv->task("send mail");
     $serv->task("send mail", -1, function ($serv, $task_id, $res) {
-        echo "task_res...".$res;
+        echo "task_res——task_id...".$task_id.PHP_EOL;
+        echo "task_res...".$res.PHP_EOL;
     });
     echo "login...".PHP_EOL;
 });
@@ -27,7 +28,7 @@ $server->on("workerstart", function ($serv, $worker_id) {//WorkerStart/onStart �
 });
 
 $server->on("connect", function ($serv,$fd,$reactorId) {//新的连接进入时，在 worker 进程中回调
-    echo "fd:".$fd."reactorId:".$reactorId.PHP_EOL;
+    echo "fd:".$fd. " reactorId:".$reactorId.PHP_EOL;
 });
 
 $server->set([
